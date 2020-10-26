@@ -78,35 +78,31 @@ class _ContentList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 180,
-      child: Material(
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ListTile(
-              onTap: () {},
-              title: Text(title, style: appTheme.textTheme.headline6),
-              trailing: Icon(
-                Icons.arrow_forward,
-                color: iconColor
-              ),
+    return Material(
+      color: Colors.white,
+      child: Column(
+        children: [
+          ListTile(
+            onTap: () {},
+            title: Text(title, style: appTheme.textTheme.headline6),
+            trailing: Icon(
+              Icons.arrow_forward,
+              color: iconColor
             ),
-            SizedBox(
-              height: 100,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 5,
-                itemBuilder: (context, index) => Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 12),
-                  color: primaryColor,
-                  width: 100,
-                )
-              ),
+          ),
+          SizedBox(
+            height: 120,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 5,
+              itemBuilder: (context, index) => Container(
+                margin: const EdgeInsets.fromLTRB(12, 12, 0, 12),
+                color: primaryColor,
+                width: 100,
+              )
             ),
-          ]
-        ),
+          ),
+        ]
       ),
     );
   }
