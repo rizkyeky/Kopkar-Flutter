@@ -29,33 +29,84 @@ class HomePage extends Page<HomeBloc> {
             ), 
           ),
           Container(
+            height: 72,
             margin: const EdgeInsets.all(24),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.black.withOpacity(0.12)),
               borderRadius: BorderRadius.circular(24)
             ),
-            child: SizedBox(
-              height: 72,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.apps, color: iconColor), 
-                    onPressed: () {},),
-                  IconButton(
-                    icon: Icon(Icons.smartphone, color: iconColor), 
-                    onPressed: () {},),
-                  IconButton(
-                    icon: Icon(Icons.signal_cellular_alt, color: iconColor), 
-                    onPressed: () {},),
-                  IconButton(
-                    icon: Icon(Icons.offline_bolt_outlined, color: iconColor), 
-                    onPressed: () {},),
-                ],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.apps, color: iconColor), 
+                  onPressed: () {},),
+                IconButton(
+                  icon: Icon(Icons.smartphone, color: iconColor), 
+                  onPressed: () {},),
+                IconButton(
+                  icon: Icon(Icons.signal_cellular_alt, color: iconColor), 
+                  onPressed: () {},),
+                IconButton(
+                  icon: Icon(Icons.offline_bolt_outlined, color: iconColor), 
+                  onPressed: () {},),
+              ],
+            ),
+          ),
+          const _ContentList(
+            title: 'Rekomendasi',
+          ),
+          const SizedBox(height: 24,),
+          const _ContentList(
+            title: 'Terbaru',
+          ),
+          const SizedBox(height: 24,),
+        ],
+      ),
+    );
+  }
+}
+
+class _ContentList extends StatelessWidget {
+  
+  final String title; 
+
+  const _ContentList({
+    Key key,
+    this.title,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 180,
+      child: Material(
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ListTile(
+              onTap: () {},
+              title: Text(title, style: appTheme.textTheme.headline6),
+              trailing: Icon(
+                Icons.arrow_forward,
+                color: iconColor
               ),
             ),
-          )
-        ],
+            SizedBox(
+              height: 100,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (context, index) => Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 12),
+                  color: primaryColor,
+                  width: 100,
+                )
+              ),
+            ),
+          ]
+        ),
       ),
     );
   }
