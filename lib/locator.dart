@@ -6,7 +6,7 @@ import 'bloc/bloc.dart';
 
 GetIt locator = GetIt.instance;
 
-Future<void> setupLocator() async {
+Future<void> setLocator() async {
 
   // locator.registerLazySingleton(() => QuoteService());
   // locator.registerLazySingleton(() => DummyService());
