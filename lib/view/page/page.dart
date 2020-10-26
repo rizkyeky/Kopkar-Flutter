@@ -2,7 +2,9 @@ library page;
 
 // import 'package:animations/animations.dart';
 // import 'package:fl_chart/fl_chart.dart';
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:kopkar/theme.dart';
 
 import '../../bloc/bloc.dart';
 import '../../locator.dart';
@@ -11,6 +13,7 @@ import '../../locator.dart';
 // import 'package:test_thumbrand/theme.dart';
 // import 'package:test_thumbrand/view/component/component.dart';
 
+part 'page_main.dart';
 part 'page_home.dart';
 part 'page_history.dart';
 part 'page_login.dart';
