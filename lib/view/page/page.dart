@@ -5,14 +5,11 @@ library page;
 import 'package:animations/animations.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:kopkar/theme.dart';
 
 import '../../bloc/bloc.dart';
 import '../../locator.dart';
-// import 'package:test_thumbrand/model/model.dart';
-
-// import 'package:test_thumbrand/theme.dart';
-// import 'package:test_thumbrand/view/component/component.dart';
+import '../../theme.dart';
+import '../component/component.dart';
 
 part 'page_main.dart';
 part 'page_home.dart';
