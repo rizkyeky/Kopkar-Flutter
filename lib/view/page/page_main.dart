@@ -46,23 +46,24 @@ class MainPage extends StatelessWidget {
         valueListenable: setTab,
         builder: (context, value, child) => BottomNavigationBar(
           currentIndex: value,
-          selectedIconTheme: IconThemeData(size: 28, color: primaryColor),
-          unselectedIconTheme: IconThemeData(size: 24, color: borderColor),
+          showUnselectedLabels: true,
+          selectedItemColor: primaryColor,
+          unselectedItemColor: iconColor,
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined), label: 'Home',
+              icon: Icon(Icons.home_outlined), label: 'Home', 
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.explore_outlined), label: 'Pinjaman',
+              icon: Icon(Icons.book_outlined), label: 'Pinjaman',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.bookmark_border), label: 'Simpanan',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.history_edu_outlined), label: 'History',
+              icon: Icon(Icons.history_edu_outlined), label: 'Riwayat',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle_outlined), label: 'Profile',
+              icon: Icon(Icons.account_circle_outlined), label: 'Akun',
             ),
           ],
           onTap: (index) {
