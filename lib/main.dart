@@ -17,7 +17,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Kopkar',
       theme: appTheme,
-      home: MainPage(),
+      home: LoginPage(),
     );
   }
 }
