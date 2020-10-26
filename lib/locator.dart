@@ -1,7 +1,6 @@
 import 'package:get_it/get_it.dart';
-// import 'package:test_thumbrand/bloc/bloc.dart';
 
-// import 'bloc/bloc.dart';
+import 'bloc/bloc.dart';
 // import 'model/model.dart';
 // import 'service/service.dart';
 
@@ -13,12 +12,12 @@ Future<void> setupLocator() async {
   // locator.registerLazySingleton(() => DummyService());
   // locator.registerLazySingleton(() => GraphService());
   
-  // locator.registerFactory(() => FirstBloc());
-  // locator.registerFactory(() => SecondBloc());
-  // locator.registerFactory(() => ThirdBloc());
-  
-  // locator.registerSingleton<Pemantau>(Pemantau.initial(), instanceName: 'Pemantau Active');
-  // locator.registerSingleton<User>(User.initial(), instanceName: 'User Active');
+  locator.registerFactory(() => HomeBloc());
+  locator.registerFactory(() => ProfileBloc());
+  locator.registerFactory(() => LoginBloc());
+  locator.registerFactory(() => PinjamanBloc());
+  locator.registerFactory(() => SimpananBloc());
+  locator.registerFactory(() => HistoryBloc());
   
   await locator.allReady();
   // await locator.get<QuoteService>().init();
