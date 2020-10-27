@@ -15,37 +15,45 @@ class LoginPage extends Page<LoginBloc> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Builder(
-        builder: (contextScaffold) => Stack(
-          children: [
-            SizedBox(
-              height: 300,
-              width: MediaQuery.of(context).size.width,
-              child: const CustomPaint(
-                painter: LoginBackgroundPainter(),
-              )
-            ),
-            SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const SizedBox(height: 300,),
-                  XTextField(
-                    controller: _emailText,
-                    text: 'Email',
-                  ),
-                  const SizedBox(height: 24,),
-                  XTextField(
-                    obscureText: true,
-                    controller: _passwordText,
-                    text: 'Password',
-                  ),
-                  const SizedBox(height: 24,),
-                  
-                ],
+        builder: (contextScaffold) => SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SvgPicture.asset(
+                'assets/bglogin.svg',
+                fit: BoxFit.cover,
+                height: 300,
               ),
-            ),
-          ],
+              const SizedBox(height: 24,),
+              Padding(
+                padding: const EdgeInsets.all(24),
+                child: XTextField(
+                  controller: _emailText,
+                  text: 'Email',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(24),
+                child: XTextField(
+                  obscureText: true,
+                  controller: _passwordText,
+                  text: 'Password',
+                ),
+              ),
+              const SizedBox(height: 24,),
+              FloatingActionButton.extended(
+                elevation: 0,
+                highlightElevation: 0,
+                onPressed: () {}, 
+                label: Row(
+                  children: const [
+                    Text('Login', style: TextStyle(fontSize: 24)),
+                    SizedBox(width: 12),
+                    Icon(Icons.arrow_forward)
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -59,36 +67,31 @@ class LoginBackgroundPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
 
-    var path = Path();
+    final path = Path();
     var paint = Paint();
 
-    var w = size.width;
-    var h = size.height;
-
-    // var rect = Rect.fromLTWH(0, 0, size.width, size.height);
-    // path.addRect(rect);
-
     path.moveTo(0, 0);
-    path.lineTo(w, 0);
-    path.lineTo(w, h);
+    path.moveTo(size.width, 0);
+    path.moveTo(size.width, size.height);
+    path.quadraticBezierTo(size.width * 0.25, size.height * 0.875,
+        size.width * 0.5, size.height * 0.9167);
+    path.quadraticBezierTo(size.width * 0.75, size.height * 0.9584,
+        size.width * 1.0, size.height * 0.9167);
+    // path.lineTo(0, size.height);
+    path.lineTo(0, size.height);
 
-    path.arcToPoint(Offset(w/2, h/2));
+    final colors = [Colors.blue, Colors.white];
+    final stops = [0 / 2, 1.8 / 2];
 
-    path.lineTo(0, h);
-    path.close();
-
-    var colors = [Colors.blue, Colors.white];
-    var stops = [0 / 2, 1.8 / 2];
-
-    Rect rectShape = new Rect.fromLTWH(0, 0, size.width, size.height);
+    final Rect rectShape = Rect.fromLTWH(0, 0, size.width, size.height);
     final Gradient gradient = LinearGradient(
       colors: colors, 
       stops: stops,
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter
-      );
+    );
 
-    paint = new Paint()..shader = gradient.createShader(rectShape);
+    paint = Paint()..shader = gradient.createShader(rectShape);
 
     canvas.drawPath(path, paint);
   }
