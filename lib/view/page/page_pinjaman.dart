@@ -1,5 +1,7 @@
 part of 'page.dart';
 
+enum _PinjamanType {berjalan, ajuan}
+
 class PinjamanPage extends Page<PinjamanBloc> {
 
   @override
@@ -30,11 +32,11 @@ class PinjamanPage extends Page<PinjamanBloc> {
           children: [
             ListView.builder(
               itemCount: 3,
-              itemBuilder: (context, index) => _MyCard1()
+              itemBuilder: (context, index) =>  _MyCard1(_PinjamanType.berjalan)
             ),
             ListView.builder(
               itemCount: 3,
-              itemBuilder: (context, index) => _MyCard1()
+              itemBuilder: (context, index) => _MyCard1(_PinjamanType.ajuan)
             )
           ]
         )
@@ -44,8 +46,20 @@ class PinjamanPage extends Page<PinjamanBloc> {
 }
 
 class _MyCard1 extends StatelessWidget {
+
+  final _PinjamanType type;
+
+  const _MyCard1(this.type, {Key key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
+
+    final str1 = type == _PinjamanType.berjalan ? 'Sisa Pinjaman' : 'Dana Pengajuan' ;
+    final str2 = type == _PinjamanType.berjalan ? 'Total Pinjaman' : 'Ajuan Angsuran' ;
+    final str3 = type == _PinjamanType.berjalan ? 'Rp10.000.000' : 'Rp2.000.000' ;
+    final str4 = type == _PinjamanType.berjalan ? 'Rp10.000.000' : '12 bulan' ;
+    
+
     return Container(
       margin: const EdgeInsets.fromLTRB(24, 24, 24, 0),
       padding: const EdgeInsets.fromLTRB(24, 24, 24, 6),
@@ -55,26 +69,46 @@ class _MyCard1 extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Sisa Pinjaman', style: TextStyle(color: Colors.black.withOpacity(0.6))),
-                  const Text('Rp2.000.000', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                  const SizedBox(height: 18,),
-                  Text('Jumlah Pinjaman', style: TextStyle(color: Colors.black.withOpacity(0.6))),
-                  const Text('Rp2.000.000', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)
-                ],
-              ),
-              const Text('05/05/2020')
-            ],
+          SizedBox(
+            height: 100,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(str1, style: TextStyle(color: Colors.black.withOpacity(0.6))),
+                    Text(str3, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                    const SizedBox(height: 18,),
+                    Text(str2, style: TextStyle(color: Colors.black.withOpacity(0.6))),
+                    Text(str4, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const Text('05/05/2020'),
+                    if (type == _PinjamanType.ajuan) Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.green.withOpacity(0.6),
+                        borderRadius: BorderRadius.circular(24),
+                        border: Border.all(color: borderColor)
+                      ),
+                      child: Text('Berjalan', style: TextStyle(color: Colors.black.withOpacity(0.6)),),
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
-          const Divider(height: 24,),
-          Row(
+          if (type == _PinjamanType.berjalan) const Divider(height: 24,),
+          if (type == _PinjamanType.berjalan) Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
