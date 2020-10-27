@@ -7,6 +7,7 @@ Color iconColor = Colors.black.withOpacity(0.54);
 
 ThemeData appTheme = ThemeData(
   brightness: Brightness.light,
+  scaffoldBackgroundColor: Colors.white,
   primaryColor: primaryColor,
   accentColor: primaryColor,
   visualDensity: VisualDensity.adaptivePlatformDensity,
