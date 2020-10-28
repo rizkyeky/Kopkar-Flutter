@@ -32,11 +32,11 @@ class PinjamanPage extends Page<PinjamanBloc> {
           children: [
             ListView.builder(
               itemCount: 3,
-              itemBuilder: (context, index) =>  _MyCard1(_PinjamanType.berjalan)
+              itemBuilder: (context, index) => const  _MyCard(_PinjamanType.berjalan)
             ),
             ListView.builder(
               itemCount: 3,
-              itemBuilder: (context, index) => _MyCard1(_PinjamanType.ajuan)
+              itemBuilder: (context, index) => const _MyCard(_PinjamanType.ajuan)
             )
           ]
         )
@@ -45,11 +45,11 @@ class PinjamanPage extends Page<PinjamanBloc> {
   }
 }
 
-class _MyCard1 extends StatelessWidget {
+class _MyCard extends StatelessWidget {
 
   final _PinjamanType type;
 
-  const _MyCard1(this.type, {Key key}) : super(key: key);
+  const _MyCard(this.type, {Key key}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
