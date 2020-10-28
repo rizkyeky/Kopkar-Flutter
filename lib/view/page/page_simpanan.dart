@@ -28,14 +28,8 @@ class SimpananPage extends Page<SimpananBloc> {
         ),
         body: TabBarView(
           children: [
-            ListView.builder(
-              itemCount: 3,
-              itemBuilder: (context, index) => const Center(child: Text('Sukarela'),),
-            ),
-            ListView.builder(
-              itemCount: 3,
-              itemBuilder: (context, index) => const Center(child: Text('Wajib'),)
-            )
+            const Center(child: Text('Sukarela'),),
+            const Center(child: Text('Wajib'),)
           ]
         )
       ),
