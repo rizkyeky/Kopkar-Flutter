@@ -31,7 +31,14 @@ class SimpananPage extends Page<SimpananBloc> {
             const Center(child: Text('Sukarela'),),
             const Center(child: Text('Wajib'),)
           ]
-        )
+        ),
+        floatingActionButton: FloatingActionButton(
+          elevation: 0,
+          highlightElevation: 0,
+          child: Icon(Icons.add),
+          onPressed: () {},
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
   }
