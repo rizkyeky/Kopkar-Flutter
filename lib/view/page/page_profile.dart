@@ -13,7 +13,7 @@ class ProfilePage extends Page<ProfileBloc> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('KOPKAR'),
+        title: const Text('KOPKAR'),
         centerTitle: true,
       ),
       body: ListView(
@@ -41,11 +41,11 @@ class ProfilePage extends Page<ProfileBloc> {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.account_circle_outlined),
-            title: Text('Nama'),
-            trailing: Icon(Icons.edit),
+            leading: const Icon(Icons.account_circle_outlined),
+            title: const Text('Nama'),
+            trailing: const Icon(Icons.edit),
             onLongPress: () {},
-            subtitle: Text('Nama untuk akun ini'),
+            subtitle: const Text('Ganti nama untuk akun ini'),
           )
         ],
       ),
