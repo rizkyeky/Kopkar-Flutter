@@ -14,7 +14,7 @@ part 'bloc_login.dart';
 part 'bloc_profile.dart';
 part 'bloc_pinjaman.dart';
 part 'bloc_simpanan.dart';
-
+part 'bloc_historyoption.dart';
 
 abstract class Bloc {
   void init();
