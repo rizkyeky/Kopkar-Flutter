@@ -45,6 +45,6 @@ class _XDropDownState extends State<XDropDown> {
           )),
         ),
       ),
-    ) : XBox(borderColor: borderColor, height: 50,);
+    ) : XBox();
   }
 }
