@@ -94,7 +94,7 @@ class HistorySimpananBody extends StatelessWidget {
     return ListView(
       children: [
         XBox(
-          padding: EdgeInsets.fromLTRB(24, 24, 24, 6),
+          padding: const EdgeInsets.fromLTRB(24, 24, 24, 6),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -109,7 +109,7 @@ class HistorySimpananBody extends StatelessWidget {
               XTextField(
                 controller: _tglAkhircontroller,
               ),
-              const SizedBox(height: 24,),
+              const SizedBox(height: 12,),
               const Divider(),
               FlatButton(onPressed: () {}, child: const Text('CARI'))
             ],
