@@ -1,49 +1,23 @@
 part of 'component.dart';
 
 class XBox extends StatelessWidget {
-  final String text;
-  final double height;
-  final double width;
-  final EdgeInsets margin;
-  final Color borderColor;
+
   final Widget child;
   final EdgeInsets padding;
+  final EdgeInsets margin;
 
-  const XBox({
-    Key key, 
-    this.text, 
-    this.height, 
-    this.width,
-    this.child, 
-    this.margin,
-    this.padding,
-    this.borderColor
-  }) : super(key: key);
-
+  const XBox({Key key, this.child, this.padding, this.margin}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: margin ?? const EdgeInsets.all(8.0),
-      child: Material(
-        clipBehavior: Clip.antiAlias,
-        type: MaterialType.card,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6),
-          side: BorderSide(
-            width: 3, 
-            color: borderColor ?? primaryColor
-          )
-        ),
-        child: InkWell(
-          onTap: () {},
-          child: Container(
-            margin: padding ?? const EdgeInsets.all(10),
-            height: height,
-            width: width,
-            child: child,
-          ),
-        ),
+    return Container(
+      margin: margin ?? const EdgeInsets.fromLTRB(24, 24, 24, 0),
+      padding: padding ?? const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black.withOpacity(0.12)),
+        borderRadius: BorderRadius.circular(24)
       ),
+      child: child
     );
   }
 }
