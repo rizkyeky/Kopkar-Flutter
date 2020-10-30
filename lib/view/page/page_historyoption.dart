@@ -65,16 +65,17 @@ class HistoryPembelianBody extends StatelessWidget {
       itemCount: 3,
       itemBuilder: (context, index) => XBox(
         child: SizedBox(
-          height: 120,
+          height: 150,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: List.generate(content.length, (index) => Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(content.keys.toList()[index]),
+                Text(content.keys.toList()[index], 
+                  style: appTheme.textTheme.subtitle1),
                 Text(content.values.toList()[index], 
-                  style: const TextStyle(fontWeight: FontWeight.bold),),
+                  style: appTheme.textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold)),
               ]
             ))
           ),
