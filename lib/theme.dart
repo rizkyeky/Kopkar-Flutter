@@ -14,10 +14,4 @@ ThemeData appTheme = ThemeData(
   iconTheme: IconThemeData(
     color: iconColor,
   ),
-  textTheme: TextTheme(
-    overline: TextStyle(
-      fontSize: 10, fontWeight: FontWeight.w500, color: Colors.black.withOpacity(0.6)),
-    headline6: TextStyle(
-      fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black.withOpacity(0.87)),
-  ),
 );
