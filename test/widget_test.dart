@@ -8,7 +8,10 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_test/flutter_test.dart';
 
-// import 'package:kopkar/main.dart';
+import 'package:kopkar/service/service.dart';
 
-void main() {
+Future<void> main() async {
+
+  final UserService _service = UserService();
+  await _service.getUser();
 }
