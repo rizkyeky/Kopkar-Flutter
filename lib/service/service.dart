@@ -1,8 +1,10 @@
 
 import 'dart:convert';
 
-import '../model/model.dart';
-
 import 'package:http/http.dart' as http;
 
+import '../model/model.dart';
+
+
 part 'service_anggota.dart';
+part 'service_pinjaman.dart';
