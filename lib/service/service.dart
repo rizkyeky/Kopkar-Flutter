@@ -5,4 +5,4 @@ import '../model/model.dart';
 
 import 'package:http/http.dart' as http;
 
-part 'service_user.dart';
+part 'service_anggota.dart';
