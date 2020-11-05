@@ -7,7 +7,7 @@ class UserService {
   
   final http.Client _client = http.Client();
   
-  Future<void> getAnggota() async {
+  Future<Anggota> getAnggota() async {
     
     final Uri _uri = Uri.http(_homeBase, _subBase);
     
