@@ -1,6 +1,6 @@
 part of 'bloc.dart';
 
-class DetailPinjamanBerjalanBloc implements Bloc {
+class DetailPinjamanBloc implements Bloc {
   @override
   void dispose() {
     // TODO: implement dispose
@@ -11,6 +11,10 @@ class DetailPinjamanBerjalanBloc implements Bloc {
     // TODO: implement init
   }
 
-  
+  final PinjamanService _pinjamanBerjalanService = locator.get<PinjamanService>();
+
+  Future<List<Map>> getTable(String docNo) {
+    return _pinjamanBerjalanService.getDetailPinjamanBerjalan(docNo);
+  }
 
 }
