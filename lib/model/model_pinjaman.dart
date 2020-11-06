@@ -1,8 +1,44 @@
 part of 'model.dart';
 
-class PinjamanBerjalan {
-  String docNo;
+abstract class PinjamanItem {
   String docDate;
+  String docNo;
+}
+
+class PinjamanAjuan implements PinjamanItem {
+  @override
+  String docNo;
+  @override
+  String docDate;
+
+  String status;
+  String danaPengajuan;
+  String ajuanAngsuran;
+
+  PinjamanAjuan(
+    this.docNo, 
+    this.docDate, 
+    this.ajuanAngsuran, 
+    this.danaPengajuan, 
+    this.status
+  );
+
+  factory PinjamanAjuan.initial() => PinjamanAjuan('','','','','');
+  factory PinjamanAjuan.fromJSON(Map<String, dynamic> data) => PinjamanAjuan(
+    data['doc_no'] as String,
+    data['tanggal'] as String, 
+    data['ajuan_angsuran'] as String, 
+    data['dana_pengajuan'] as String, 
+    data['status'] as String, 
+  );
+}
+
+class PinjamanBerjalan implements PinjamanItem {
+  @override
+  String docNo;
+  @override
+  String docDate;
+  
   String statusBayar;
   String statusPencairan;
   String nik;
