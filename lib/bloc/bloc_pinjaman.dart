@@ -16,4 +16,10 @@ class PinjamanBloc implements Bloc {
   Future<List<PinjamanBerjalan>> getPinjamanBerjalanFromService(String nik) async {
     return _pinjamanBerjalanService.getPinjamanBerjalan(nik);
   } 
+
+  Future<List<PinjamanAjuan>> getPinjamanAjuanFromService(String nik) async {
+    return _pinjamanBerjalanService.getPinjamanAjuan(nik);
+  } 
+
+  
 }
