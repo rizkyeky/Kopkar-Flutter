@@ -1,14 +1,14 @@
 import 'package:get_it/get_it.dart';
 
 import 'bloc/bloc.dart';
-// import 'model/model.dart';
-// import 'service/service.dart';
+import 'model/model.dart';
+import 'service/service.dart';
 
 GetIt locator = GetIt.instance;
 
 Future<void> setLocator() async {
 
-  // locator.registerLazySingleton(() => QuoteService());
+  locator.registerLazySingleton(() => PinjamanService());
   // locator.registerLazySingleton(() => DummyService());
   // locator.registerLazySingleton(() => GraphService());
   
