@@ -1,7 +1,5 @@
 part of 'page.dart';
 
-enum PinjamanType {berjalan, ajuan}
-
 class PinjamanPage extends Page<PinjamanBloc> {
 
   @override
@@ -32,14 +30,17 @@ class PinjamanPage extends Page<PinjamanBloc> {
             FutureBuilder<List<PinjamanBerjalan>>(
               future: _bloc.getPinjamanBerjalanFromService('07380'),
               builder: (context, snapshot) => (snapshot.hasData) ? ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (context, index) => MyCard(PinjamanType.berjalan, item: snapshot.data[index])
-                ) : const Center(child: CircularProgressIndicator(),)
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) => PinjamanCard(snapshot.data[index])
+              ) : const Center(child: CircularProgressIndicator(),)
             ),
-            ListView.builder(
-              itemCount: 3,
-              itemBuilder: (context, index) => const MyCard(PinjamanType.ajuan)
-            )
+            FutureBuilder<List<PinjamanAjuan>>(
+              future: _bloc.getPinjamanAjuanFromService('07380'),
+              builder: (context, snapshot) => (snapshot.hasData) ? ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) => PinjamanCard(snapshot.data[index])
+              ) : const Center(child: CircularProgressIndicator(),)
+            ),
           ]
         )
       ),
@@ -47,21 +48,28 @@ class PinjamanPage extends Page<PinjamanBloc> {
   }
 }
 
-class MyCard extends StatelessWidget {
+class PinjamanCard extends StatelessWidget {
 
-  final PinjamanType type;
-  final PinjamanBerjalan item;
+  final PinjamanItem item;
 
-  const MyCard(this.type, {this.item, Key key}) : super(key: key);
+  const PinjamanCard(this.item, {Key key}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
 
-    final str1 = type == PinjamanType.berjalan ? 'Sisa Pinjaman' : 'Dana Pengajuan' ;
-    final str2 = type == PinjamanType.berjalan ? 'Total Pinjaman' : 'Ajuan Angsuran' ;
-    final str3 = type == PinjamanType.berjalan ? item.sisaPinjaman : 'Rp2.000.000' ;
-    final str4 = type == PinjamanType.berjalan ? item.totalPinjaman : '12 bulan' ;
+    final String key1 = item is PinjamanBerjalan ? 'Sisa Pinjaman' : 'Dana Pengajuan' ;
+    final String key2 = item is PinjamanBerjalan ? 'Total Pinjaman' : 'Ajuan Angsuran' ;
+    String val1;
+    String val2;
   
+    if (item is PinjamanBerjalan) {
+      val1 = (item as PinjamanBerjalan).sisaPinjaman;
+      val2 = (item as PinjamanBerjalan).totalPinjaman;
+    } else {
+      val1 = (item as PinjamanAjuan).danaPengajuan;
+      val2 = (item as PinjamanAjuan).ajuanAngsuran;
+    }
+    
     return XBox(
       margin: const EdgeInsets.fromLTRB(24, 24, 24, 0),
       padding: const EdgeInsets.fromLTRB(24, 24, 24, 6),
@@ -79,11 +87,11 @@ class MyCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(str1, style: appTheme.textTheme.bodyText1),
-                    Text(str3, style: appTheme.textTheme.headline6),
+                    Text(key1, style: appTheme.textTheme.bodyText1),
+                    Text(val1, style: appTheme.textTheme.headline6),
                     const SizedBox(height: 18,),
-                    Text(str2, style: appTheme.textTheme.bodyText1),
-                    Text(str4, style: appTheme.textTheme.headline6)
+                    Text(key2, style: appTheme.textTheme.bodyText1),
+                    Text(val2, style: appTheme.textTheme.headline6)
                   ],
                 ),
                 Column(
@@ -91,7 +99,7 @@ class MyCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(item.docDate, style: appTheme.textTheme.bodyText1),
-                    if (type == PinjamanType.ajuan) Container(
+                    if (item is PinjamanAjuan) Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         color: Colors.green.withOpacity(0.6),
@@ -105,28 +113,35 @@ class MyCard extends StatelessWidget {
               ],
             ),
           ),
-          if (type == PinjamanType.berjalan) const Divider(height: 24,),
-          if (type == PinjamanType.berjalan) Row(
+          if (item is PinjamanBerjalan) const Divider(height: 24,),
+          if (item is PinjamanBerjalan) Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Jumlah Angsuran', style: appTheme.textTheme.bodyText1),
-                  Text(item.jumlahAngsuran, style: appTheme.textTheme.headline6),
+                  Text((item as PinjamanBerjalan).jumlahAngsuran, style: appTheme.textTheme.headline6),
                 ],
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text('Angsuran Berjalan', style: appTheme.textTheme.bodyText1),
-                  Text(item.angsuranBerjalan, style: appTheme.textTheme.headline6),
+                  Text((item as PinjamanBerjalan).angsuranBerjalan, style: appTheme.textTheme.headline6),
                 ],
               )
             ],
           ),
           const Divider(height: 12,),
-          FlatButton(onPressed: () {}, child: const Text('LIHAT DETAIL'))
+          FlatButton(
+            onPressed: () =>Navigator.push(
+              context, MaterialPageRoute(
+                builder: (context) => DetailPinjamanBerjalanPage(item.docNo)
+              )
+            ), 
+            child: const Text('LIHAT DETAIL')
+          )
         ],
       ),
     );
