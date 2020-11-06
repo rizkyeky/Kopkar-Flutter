@@ -14,4 +14,13 @@ ThemeData appTheme = ThemeData(
   iconTheme: IconThemeData(
     color: iconColor,
   ),
+  textTheme: const TextTheme(
+    bodyText1: TextStyle(
+      color: Colors.black54,
+      // fontWeight: FontWeight.w300
+    ),
+    headline6: TextStyle(
+      fontWeight: FontWeight.bold
+    )
+  )
 );
