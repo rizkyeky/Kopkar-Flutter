@@ -19,6 +19,7 @@ Future<void> setLocator() async {
   locator.registerFactory(() => SimpananBloc());
   locator.registerFactory(() => HistoryBloc());
   locator.registerFactory(() => HistoryOptionBloc());
+  locator.registerFactory(() => DetailPinjamanBerjalanBloc());
   
   await locator.allReady();
   // await locator.get<QuoteService>().init();
