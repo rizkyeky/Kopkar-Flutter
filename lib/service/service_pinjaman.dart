@@ -4,7 +4,7 @@ class PinjamanService {
   
   final http.Client _client = http.Client();
 
-  Future<void> getPinjamanBerjalan(String nik) async {
+  Future<List<PinjamanBerjalan>> getPinjamanBerjalan(String nik) async {
     
     const String _homeBase = '185.210.144.158';
     const String _subBase = 'koperasi_api/Api_v1/getTransPinjamBlm';
@@ -16,10 +16,15 @@ class PinjamanService {
       .timeout(const Duration(seconds: 10));
 
     final Map data = json.decode(response.body) as Map;
-    final bool isLogin = data['message'] == 'Login Berhasil';
+    final List result = data['result'] as List;
+
+    final bool isLogin = data['status'] == '200';
 
     if (response.statusCode != 200 || !isLogin) {
+      return [];
     } else {
+      return List.generate(result.length, (index) => 
+        PinjamanBerjalan.fromJSON(result[index] as Map<String, dynamic>));
     }
   }
 
