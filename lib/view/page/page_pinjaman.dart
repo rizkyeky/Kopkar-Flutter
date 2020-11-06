@@ -29,9 +29,12 @@ class PinjamanPage extends Page<PinjamanBloc> {
         ),
         body: TabBarView(
           children: [
-            ListView.builder(
-              itemCount: 3,
-              itemBuilder: (context, index) => const  MyCard(PinjamanType.berjalan)
+            FutureBuilder<List<PinjamanBerjalan>>(
+              future: _bloc.getPinjamanBerjalanFromService('07380'),
+              builder: (context, snapshot) => (snapshot.hasData) ? ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (context, index) => MyCard(PinjamanType.berjalan, item: snapshot.data[index])
+                ) : const Center(child: CircularProgressIndicator(),)
             ),
             ListView.builder(
               itemCount: 3,
@@ -47,16 +50,17 @@ class PinjamanPage extends Page<PinjamanBloc> {
 class MyCard extends StatelessWidget {
 
   final PinjamanType type;
+  final PinjamanBerjalan item;
 
-  const MyCard(this.type, {Key key}) : super(key: key);
+  const MyCard(this.type, {this.item, Key key}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
 
     final str1 = type == PinjamanType.berjalan ? 'Sisa Pinjaman' : 'Dana Pengajuan' ;
     final str2 = type == PinjamanType.berjalan ? 'Total Pinjaman' : 'Ajuan Angsuran' ;
-    final str3 = type == PinjamanType.berjalan ? 'Rp10.000.000' : 'Rp2.000.000' ;
-    final str4 = type == PinjamanType.berjalan ? 'Rp10.000.000' : '12 bulan' ;
+    final str3 = type == PinjamanType.berjalan ? item.sisaPinjaman : 'Rp2.000.000' ;
+    final str4 = type == PinjamanType.berjalan ? item.totalPinjaman : '12 bulan' ;
   
     return XBox(
       margin: const EdgeInsets.fromLTRB(24, 24, 24, 0),
@@ -76,7 +80,7 @@ class MyCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(str1, style: appTheme.textTheme.bodyText1),
-                    Text(str3, style: appTheme.textTheme.headline6,),
+                    Text(str3, style: appTheme.textTheme.headline6),
                     const SizedBox(height: 18,),
                     Text(str2, style: appTheme.textTheme.bodyText1),
                     Text(str4, style: appTheme.textTheme.headline6)
@@ -86,7 +90,7 @@ class MyCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text('05/05/2020', style: appTheme.textTheme.bodyText1),
+                    Text(item.docDate, style: appTheme.textTheme.bodyText1),
                     if (type == PinjamanType.ajuan) Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
@@ -109,14 +113,14 @@ class MyCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Jumlah Angsuran', style: appTheme.textTheme.bodyText1),
-                  Text('12 bulan', style: appTheme.textTheme.headline6),
+                  Text(item.jumlahAngsuran, style: appTheme.textTheme.headline6),
                 ],
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text('Angsuran Berjalan', style: appTheme.textTheme.bodyText1),
-                  Text('12 bulan', style: appTheme.textTheme.headline6),
+                  Text(item.angsuranBerjalan, style: appTheme.textTheme.headline6),
                 ],
               )
             ],
