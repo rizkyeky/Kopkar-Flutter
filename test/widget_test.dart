@@ -15,11 +15,11 @@ Future<void> main() async {
 
   final PinjamanService _service = PinjamanService();
   // await _service.getPinjamanBerjalan('07380');
-  List<PinjamanBerjalan> pinjamanBerjalan = await _service.getPinjamanBerjalan('07380');
-  
-  pinjamanBerjalan.forEach((element) {
-    print(element.docNo);
-    print(element.docDate);
-  });
+  // List<PinjamanBerjalan> pinjamanBerjalan = await _service.getPinjamanBerjalan('07380');
+  List<Map> data = await _service.getDetailPinjamanBerjalan('PIN2020082500');
+  print(data.length);
+  // data.forEach((element) {
+  //   print(element);
+  // });
   // await _service.getSome();
 }
