@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../bloc/bloc.dart';
 import '../../locator.dart';
+import '../../model/model.dart';
 import '../../theme.dart';
 import '../component/component.dart';
 
@@ -20,6 +21,7 @@ part 'page_pinjaman.dart';
 part 'page_profile.dart';
 part 'page_simpanan.dart';
 part 'page_historyoption.dart';
+part 'page_detail_pinjaman_berjalan.dart';
 
 enum HistoryType {pembelian, simpanan, shu, ppbo, potongan, pinjaman}
 
