@@ -3,12 +3,17 @@ part of 'bloc.dart';
 class PinjamanBloc implements Bloc {
   @override
   void dispose() {
-    // TODO: implement dispose
+    
   }
 
   @override
   void init() {
-    // TODO: implement init
+    
   }
 
+  final PinjamanService _pinjamanBerjalanService = locator.get<PinjamanService>();
+
+  Future<List<PinjamanBerjalan>> getPinjamanBerjalanFromService(String nik) async {
+    return _pinjamanBerjalanService.getPinjamanBerjalan(nik);
+  } 
 }
