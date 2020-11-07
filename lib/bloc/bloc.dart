@@ -15,7 +15,7 @@ part 'bloc_profile.dart';
 part 'bloc_pinjaman.dart';
 part 'bloc_simpanan.dart';
 part 'bloc_historyoption.dart';
-part 'bloc_detail_pinjaman_berjalan.dart';
+part 'bloc_detail_pinjaman.dart';
 
 abstract class Bloc {
   void init();
