@@ -42,7 +42,13 @@ class PinjamanPage extends Page<PinjamanBloc> {
               ) : const Center(child: CircularProgressIndicator(),)
             ),
           ]
-        )
+        ),
+        floatingActionButton: FloatingActionButton(
+          elevation: 0,
+          highlightElevation: 0,
+          onPressed: () {},
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }
@@ -99,14 +105,32 @@ class PinjamanCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(item.docDate, style: appTheme.textTheme.bodyText1),
-                    if (item is PinjamanAjuan) Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.green.withOpacity(0.6),
-                        borderRadius: BorderRadius.circular(24),
-                        border: Border.all(color: borderColor)
-                      ),
-                      child: Text('Berjalan', style: appTheme.textTheme.bodyText2),
+                    if (item is PinjamanAjuan) Builder(
+                      builder: (context) {
+                        Color color;
+                        switch ((item as PinjamanAjuan).status) {
+                          case 'OPEN':
+                            color = Colors.green.withOpacity(0.6);
+                            break;
+                          case 'PENDING':
+                            color = Colors.yellow.withOpacity(0.6);
+                            break;
+                          case 'CLOSE':
+                            color = Colors.red.withOpacity(0.6);
+                            break;
+                          default:
+                            color = Colors.white;
+                        }
+                        return Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: color,
+                          borderRadius: BorderRadius.circular(24),
+                          border: Border.all(color: borderColor)
+                        ),
+                        child: Text((item as PinjamanAjuan).status, style: appTheme.textTheme.bodyText2),
+                      );
+                      },
                     )
                   ],
                 )
@@ -137,7 +161,7 @@ class PinjamanCard extends StatelessWidget {
           FlatButton(
             onPressed: () =>Navigator.push(
               context, MaterialPageRoute(
-                builder: (context) => DetailPinjamanBerjalanPage(item.docNo)
+                builder: (context) => DetailPinjamanPage(item.docNo)
               )
             ), 
             child: const Text('LIHAT DETAIL')
