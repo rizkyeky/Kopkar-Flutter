@@ -64,33 +64,13 @@ class PinjamanService {
       .timeout(const Duration(seconds: 10));
 
     final Map data = json.decode(response.body) as Map;
-    final List<Map> result = (data['result'] as List)
-      .map((e) => Map.from(e as Map)).toList();
+    final bool getData = data['status'] == '400';
 
-    if (response.statusCode != 200) {
-      return [];
+    if (response.statusCode != 200 || getData) {
+      return [{}];
     } else {
-      return result;
-    }
-  }
-
-  Future<List<Map>> getDetailPinjamanAngsuran(String docNo) async {
-    const String _homeBase = '185.210.144.158';
-    const String _subBase = 'koperasi_api/api_v1/getDetailAngsuranBerjalan';
-    final Uri _uri = Uri.http(_homeBase, _subBase);
-    
-    final http.Response response = await _client.post(_uri, body: {
-      'doc_no': docNo
-    })
-      .timeout(const Duration(seconds: 10));
-
-    final Map data = json.decode(response.body) as Map;
-    final List<Map> result = (data['result'] as List)
-      .map((e) => Map.from(e as Map)).toList();
-
-    if (response.statusCode != 200) {
-      return [];
-    } else {
+      final List<Map> result = (data['result'] as List)
+        .map((e) => Map.from(e as Map)).toList();
       return result;
     }
   }
