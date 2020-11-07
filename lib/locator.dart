@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 
 import 'bloc/bloc.dart';
-import 'model/model.dart';
+// import 'model/model.dart';
 import 'service/service.dart';
 
 GetIt locator = GetIt.instance;
@@ -19,7 +19,7 @@ Future<void> setLocator() async {
   locator.registerFactory(() => SimpananBloc());
   locator.registerFactory(() => HistoryBloc());
   locator.registerFactory(() => HistoryOptionBloc());
-  locator.registerFactory(() => DetailPinjamanBerjalanBloc());
+  locator.registerFactory(() => DetailPinjamanBloc());
   
   await locator.allReady();
   // await locator.get<QuoteService>().init();
