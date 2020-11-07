@@ -19,13 +19,16 @@ class DetailPinjamanPage extends Page<DetailPinjamanBloc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        elevation: 0,
+        title: const Text('Detail'),
+      ),
       body: FutureBuilder<List<Map>>(
         future: _bloc.getTable(docNo),
         builder: (context, snapshot) {
           final List<Map> data = snapshot.data ?? [];
-          final List column = data[0].keys.toList();
-          return (snapshot.hasData) ? SingleChildScrollView(
+          final List column = (data.isNotEmpty) ? data[0].keys.toList() : [];
+          return (snapshot.hasData) ? (column.isNotEmpty) ? SingleChildScrollView(
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
@@ -41,7 +44,8 @@ class DetailPinjamanPage extends Page<DetailPinjamanBloc> {
                 })
               ),
             ),
-          ) : const Center(child: CircularProgressIndicator(),);
+          ) : const Center(child: Text('Data tidak ditemukan'),) 
+          : const Center(child: CircularProgressIndicator(),);
         }
       ),
     );
