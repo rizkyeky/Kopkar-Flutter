@@ -7,6 +7,7 @@ class XTextField extends StatelessWidget {
   final bool obscureText;
   final Widget suffixIcon;
   final void Function(String) onChanged;
+  final void Function(String) onSubmitted;
   final TextInputType keyboardType;
 
   const XTextField({ 
@@ -16,6 +17,7 @@ class XTextField extends StatelessWidget {
   this.obscureText,
   this.suffixIcon,
   this.onChanged,
+  this.onSubmitted,
   this.keyboardType
   }) : super(key: key);
 
@@ -24,11 +26,13 @@ class XTextField extends StatelessWidget {
     return TextField(
       keyboardType: keyboardType ?? TextInputType.text,
       onChanged: onChanged ?? (value) {},
+      onSubmitted: onSubmitted ?? (value) {},
       obscureText: obscureText ?? false,
       controller: controller,
       decoration: InputDecoration(
         labelText: text,
         suffixIcon: suffixIcon,
+        floatingLabelBehavior: FloatingLabelBehavior.never,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(6),
           borderSide: BorderSide(
