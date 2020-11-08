@@ -24,6 +24,7 @@ part 'page_simpanan.dart';
 part 'page_history_option.dart';
 part 'page_detail_pinjaman.dart';
 part 'page_form_simpanan.dart';
+part 'page_form_pinjaman.dart';
 
 enum HistoryType {pembelian, simpanan, shu, ppbo, potongan, pinjaman}
 

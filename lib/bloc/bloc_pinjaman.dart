@@ -11,6 +11,14 @@ class PinjamanBloc implements Bloc {
     
   }
 
+  String nikAnggota;
+  String gajiPokok;
+  String jenis;
+  String jenisPinjaman;
+  String nominalPinjaman;
+  String tenor;
+  String keperluan;
+
   final PinjamanService _pinjamanBerjalanService = locator.get<PinjamanService>();
 
   Future<List<PinjamanBerjalan>> getPinjamanBerjalanFromService(String nik) async {
