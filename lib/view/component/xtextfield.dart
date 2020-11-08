@@ -5,6 +5,7 @@ class XTextField extends StatelessWidget {
   final String text;
   final TextEditingController controller;
   final bool obscureText;
+  final bool readOnly;
   final Widget suffixIcon;
   final void Function(String) onChanged;
   final void Function(String) onSubmitted;
@@ -18,6 +19,7 @@ class XTextField extends StatelessWidget {
   this.suffixIcon,
   this.onChanged,
   this.onSubmitted,
+  this.readOnly,
   this.keyboardType
   }) : super(key: key);
 
@@ -29,6 +31,7 @@ class XTextField extends StatelessWidget {
       onSubmitted: onSubmitted ?? (value) {},
       obscureText: obscureText ?? false,
       controller: controller,
+      readOnly: readOnly ?? false,
       decoration: InputDecoration(
         labelText: text,
         suffixIcon: suffixIcon,
