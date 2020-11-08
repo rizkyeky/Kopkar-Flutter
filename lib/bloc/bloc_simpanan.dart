@@ -11,4 +11,12 @@ class SimpananBloc implements Bloc {
     // TODO: implement init
   }
 
+  String nikAnggota;
+  String gajiPokok;
+  String jenis;
+  String jenisPinjaman;
+  String nominalPinjaman;
+  String tenor;
+  String keperluan;
+
 }
