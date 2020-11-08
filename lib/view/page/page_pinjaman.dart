@@ -25,23 +25,25 @@ class PinjamanPage extends Page<PinjamanBloc> {
             ]
           ),
         ),
-        body: TabBarView(
-          children: [
-            FutureBuilder<List<PinjamanBerjalan>>(
-              future: _bloc.getPinjamanBerjalanFromService('07380'),
-              builder: (context, snapshot) => (snapshot.hasData) ? ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (context, index) => PinjamanCard(snapshot.data[index])
-              ) : const Center(child: CircularProgressIndicator(),)
-            ),
-            FutureBuilder<List<PinjamanAjuan>>(
-              future: _bloc.getPinjamanAjuanFromService('07380'),
-              builder: (context, snapshot) => (snapshot.hasData) ? ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (context, index) => PinjamanCard(snapshot.data[index])
-              ) : const Center(child: CircularProgressIndicator(),)
-            ),
-          ]
+        body: Builder(
+          builder: (scaffContext) => TabBarView(
+            children: [
+              FutureBuilder<List<PinjamanBerjalan>>(
+                future: _bloc.getPinjamanBerjalanFromService('07380'),
+                builder: (context, snapshot) => (snapshot.hasData) ? ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (context, index) => PinjamanCard(snapshot.data[index])
+                ) : const Center(child: CircularProgressIndicator(),)
+              ),
+              FutureBuilder<List<PinjamanAjuan>>(
+                future: _bloc.getPinjamanAjuanFromService('07380'),
+                builder: (context, snapshot) => (snapshot.hasData) ? ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (context, index) => PinjamanCard(snapshot.data[index])
+                ) : const Center(child: CircularProgressIndicator(),)
+              ),
+            ]
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           elevation: 0,
