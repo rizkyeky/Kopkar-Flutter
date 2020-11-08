@@ -88,13 +88,15 @@ class TexFieldSimpanan extends StatelessWidget {
   final String hitText;
   final void Function(String) onSubmitted;
   final TextInputType keyboardType;
+  final bool readOnly;
 
   const TexFieldSimpanan({
     Key key,
     this.title,
     this.hitText,
     this.onSubmitted,
-    this.keyboardType
+    this.keyboardType,
+    this.readOnly
   }) : super(key: key);
 
   @override
@@ -113,6 +115,7 @@ class TexFieldSimpanan extends StatelessWidget {
           text: hitText,
           onSubmitted: onSubmitted,
           keyboardType: keyboardType,
+          readOnly: readOnly
         )
       ],
     );
