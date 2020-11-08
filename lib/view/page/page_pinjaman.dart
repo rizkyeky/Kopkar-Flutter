@@ -48,7 +48,8 @@ class PinjamanPage extends Page<PinjamanBloc> {
         floatingActionButton: FloatingActionButton(
           elevation: 0,
           highlightElevation: 0,
-          onPressed: () {},
+          onPressed: () => Navigator.push(context, 
+            MaterialPageRoute(builder: (context) => FormPinjamanPage())),
           child: const Icon(Icons.add),
         ),
       ),
