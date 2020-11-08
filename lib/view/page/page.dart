@@ -1,15 +1,16 @@
 library page;
 
-// import 'package:animations/animations.dart';
-// import 'package:fl_chart/fl_chart.dart';
+import 'dart:async';
+import 'package:flutter/material.dart';
+
 import 'package:animations/animations.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../bloc/bloc.dart';
 import '../../locator.dart';
 import '../../model/model.dart';
+import '../../service/service.dart';
 import '../../theme.dart';
 import '../component/component.dart';
 
@@ -21,7 +22,7 @@ part 'page_pinjaman.dart';
 part 'page_profile.dart';
 part 'page_simpanan.dart';
 part 'page_historyoption.dart';
-part 'page_detail_pinjaman_berjalan.dart';
+part 'page_detail_pinjaman.dart';
 
 enum HistoryType {pembelian, simpanan, shu, ppbo, potongan, pinjaman}
 
@@ -71,4 +72,5 @@ class _PageState<T extends Bloc> extends State<Page<T>> {
   Widget build(BuildContext context) {
     return widget.build(context);
   }
+
 }
