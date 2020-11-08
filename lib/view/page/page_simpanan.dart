@@ -26,17 +26,17 @@ class SimpananPage extends Page<SimpananBloc> {
             ]
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
-            const Center(child: Text('Sukarela'),),
-            const Center(child: Text('Wajib'),)
+            Center(child: Text('Sukarela'),),
+            Center(child: Text('Wajib'),)
           ]
         ),
         floatingActionButton: FloatingActionButton(
           elevation: 0,
           highlightElevation: 0,
-          child: Icon(Icons.add),
-          onPressed: () {},
+          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FormSimpananPage())),
+          child: const Icon(Icons.add),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
