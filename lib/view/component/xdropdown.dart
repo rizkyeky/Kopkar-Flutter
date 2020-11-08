@@ -1,6 +1,6 @@
 part of 'component.dart';
 
-class XDropDown<T> extends StatefulWidget {
+class XDropDown extends StatefulWidget {
 
   final int length;
   final Widget Function(BuildContext, int) childrenBuilder;
@@ -31,6 +31,8 @@ class _XDropDownState extends State<XDropDown> {
   @override
   Widget build(BuildContext context) {
     return (!widget.isDisabled) ? XBox(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      margin: const EdgeInsets.all(0),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<int>(
           value: currValue,
