@@ -9,7 +9,7 @@ GetIt locator = GetIt.instance;
 Future<void> setLocator() async {
 
   locator.registerLazySingleton(() => PinjamanService());
-  // locator.registerLazySingleton(() => DummyService());
+  locator.registerLazySingleton(() => ConnectionService.getInstance());
   // locator.registerLazySingleton(() => GraphService());
   
   locator.registerFactory(() => HomeBloc());
@@ -22,6 +22,5 @@ Future<void> setLocator() async {
   locator.registerFactory(() => DetailPinjamanBloc());
   
   await locator.allReady();
-  // await locator.get<QuoteService>().init();
   // await locator.get<GraphService>().init();
 }
