@@ -32,6 +32,10 @@ class HistoryOptionPage extends Page<HistoryOptionBloc> {
         body = HistorySimpananBody();
         name = 'Riwayat SHU';
         break;
+      case HistoryType.ppbo:
+        body = HistoryPPBO();
+        name = 'PPBO';
+        break;
       default:
         body = const Center(child: Text('Default'));
         name = 'Default';
@@ -46,6 +50,36 @@ class HistoryOptionPage extends Page<HistoryOptionBloc> {
       body: body
     );
   }
+}
+
+class HistoryPPBO extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<Map>>(
+      builder: (context, snapshot) => (snapshot.hasData) ? ListView.builder(
+        itemCount: snapshot.data.length,
+        itemBuilder: (context, index) => XBox(
+          child: SizedBox(
+            height: 150,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: List.generate(content.length, (index) => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(content.keys.toList()[index], 
+                    style: appTheme.textTheme.subtitle1),
+                  Text(content.values.toList()[index], 
+                    style: appTheme.textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold)),
+                ]
+              ))
+            ),
+          ),
+        ),
+      ) : const Center(child: CircularProgressIndicator())
+    );
+  }
+
 }
 
 class HistoryPembelianBody extends StatelessWidget {
