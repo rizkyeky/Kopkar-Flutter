@@ -12,3 +12,4 @@ import '../model/model.dart';
 part 'service_anggota.dart';
 part 'service_pinjaman.dart';
 part 'service_connectivity.dart';
+part 'service_history.dart';

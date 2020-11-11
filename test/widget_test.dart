@@ -13,13 +13,13 @@ import 'package:kopkar/service/service.dart';
 
 Future<void> main() async {
 
-  final PinjamanService _service = PinjamanService();
+  final HistoryService _service = HistoryService();
   // await _service.getPinjamanBerjalan('07380');
   // List<PinjamanBerjalan> pinjamanBerjalan = await _service.getPinjamanBerjalan('07380');
-  List<Map> data = await _service.getDetailPinjamanBerjalan('PIN2020082500');
+  List<Map> data = await _service.getPpobTrans('07380');
   print(data.length);
-  // data.forEach((element) {
-  //   print(element);
-  // });
+  data.forEach((element) {
+    print(element);
+  });
   // await _service.getSome();
 }
