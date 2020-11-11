@@ -8,9 +8,9 @@ GetIt locator = GetIt.instance;
 
 Future<void> setLocator() async {
 
-  locator.registerLazySingleton(() => PinjamanService());
   locator.registerLazySingleton(() => ConnectionService.getInstance());
-  // locator.registerLazySingleton(() => GraphService());
+  locator.registerLazySingleton(() => PinjamanService());
+  locator.registerLazySingleton(() => HistoryService());
   
   locator.registerFactory(() => HomeBloc());
   locator.registerFactory(() => ProfileBloc());
