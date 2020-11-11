@@ -1,16 +1,16 @@
 library page;
 
-// import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:animations/animations.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../bloc/bloc.dart';
 import '../../locator.dart';
 import '../../model/model.dart';
-// import '../../service/service.dart';
 import '../../theme.dart';
 import '../component/component.dart';
 
