@@ -56,27 +56,33 @@ class HistoryPPBO extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Map>>(
-      builder: (context, snapshot) => (snapshot.hasData) ? ListView.builder(
-        itemCount: snapshot.data.length,
-        itemBuilder: (context, index) => XBox(
+      builder: (context, snapshot) {
+        final List<Map> content = (snapshot.hasData) ? snapshot.data : [{}];
+        return (snapshot.hasData) ? ListView.builder(
+        itemCount: content.length,
+        itemBuilder: (context, index) {
+          final Map<String, String> item = content[index] as Map<String, String>;
+          return XBox(
           child: SizedBox(
             height: 150,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: List.generate(content.length, (index) => Row(
+              children: List.generate(item.length, (index) => Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(content.keys.toList()[index], 
+                  Text(item.keys.toList()[index], 
                     style: appTheme.textTheme.subtitle1),
-                  Text(content.values.toList()[index], 
+                  Text(item.values.toList()[index], 
                     style: appTheme.textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold)),
                 ]
               ))
             ),
           ),
-        ),
-      ) : const Center(child: CircularProgressIndicator())
+        );
+        },
+      ) : const Center(child: CircularProgressIndicator());
+      }
     );
   }
 
