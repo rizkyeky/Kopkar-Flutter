@@ -11,6 +11,14 @@ class FormPinjamanPage extends Page<PinjamanBloc> {
   void init() {
     // TODO: implement init
   }
+
+
+  Future<File> getImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    return File(pickedFile.path);
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -27,7 +35,7 @@ class FormPinjamanPage extends Page<PinjamanBloc> {
             
             Padding(
               padding: const EdgeInsets.fromLTRB(0,18,0,6),
-              child: Text('Jenis', 
+              child: Text('Jenis Pinjaman', 
                 textAlign: TextAlign.left,
                 style: appTheme.textTheme.headline5.copyWith(fontSize: 18),
               ),
@@ -37,19 +45,8 @@ class FormPinjamanPage extends Page<PinjamanBloc> {
               onSelected: (val) => _bloc.jenis = val.toString(),
               childrenBuilder: (context, index) => Text('Nomor ${index+1}'),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0,18,0,6),
-              child: Text('Jenis Pinjaman', 
-                textAlign: TextAlign.left,
-                style: appTheme.textTheme.headline5.copyWith(fontSize: 18),
-              ),
-            ),
-            XDropDown(
-              length: 3,
-              onSelected: (val) => _bloc.jenisPinjaman = val.toString(),
-              childrenBuilder: (context, index) => Text('Nomor ${index+1}'),
-            ),
             TexFieldSimpanan(
+              keyboardType: TextInputType.number,
               title: 'Nominal Pinjaman',
               hitText: 'Contoh: 30000000',
               onSubmitted: (val) => _bloc.nominalPinjaman = val,
