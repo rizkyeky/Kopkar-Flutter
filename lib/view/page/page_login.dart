@@ -8,9 +8,6 @@ class LoginPage extends Page<LoginBloc> {
   @override
   void init() {}
 
-  final TextEditingController _emailText = TextEditingController();
-  final TextEditingController _passwordText = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +26,7 @@ class LoginPage extends Page<LoginBloc> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
                 child: XTextField(
-                  controller: _emailText,
+                  // controller: _emailText,
                   text: 'Email',
                 ),
               ),
@@ -37,7 +34,7 @@ class LoginPage extends Page<LoginBloc> {
                 padding: const EdgeInsets.all(24),
                 child: XTextField(
                   obscureText: true,
-                  controller: _passwordText,
+                  // controller: _passwordText,
                   text: 'Password',
                 ),
               ),

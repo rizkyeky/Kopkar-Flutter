@@ -115,7 +115,6 @@ class TexFieldSimpanan extends StatelessWidget {
           text: hitText,
           onSubmitted: onSubmitted,
           keyboardType: keyboardType,
-          readOnly: readOnly
         )
       ],
     );
