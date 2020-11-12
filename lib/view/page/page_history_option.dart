@@ -33,7 +33,9 @@ class HistoryOptionPage extends Page<HistoryOptionBloc> {
         name = 'Riwayat SHU';
         break;
       case HistoryType.ppbo:
-        body = HistoryPPBO();
+        body = HistoryPPBO(
+          getList: _bloc.getPPBOList
+        );
         name = 'PPBO';
         break;
       default:
@@ -53,15 +55,21 @@ class HistoryOptionPage extends Page<HistoryOptionBloc> {
 }
 
 class HistoryPPBO extends StatelessWidget {
+
+  final Future<List<Map>> Function() getList;
+
+  const HistoryPPBO({Key key, this.getList}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Map>>(
+      future: getList(),
       builder: (context, snapshot) {
         final List<Map> content = (snapshot.hasData) ? snapshot.data : [{}];
         return (snapshot.hasData) ? ListView.builder(
         itemCount: content.length,
         itemBuilder: (context, index) {
-          final Map<String, String> item = content[index] as Map<String, String>;
+          final Map<String, String> item = Map<String, String>.from(content[index]);
           return XBox(
           child: SizedBox(
             height: 150,
@@ -126,36 +134,73 @@ class HistoryPembelianBody extends StatelessWidget {
 }
 
 class HistorySimpananBody extends StatelessWidget {
+  
+  final Future<List<Map>> Function() getList;
 
-  final TextEditingController _tglAwalcontroller = TextEditingController();
-  final TextEditingController _tglAkhircontroller = TextEditingController();
+  const HistorySimpananBody({Key key, this.getList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
         XBox(
-          padding: const EdgeInsets.fromLTRB(24, 24, 24, 6),
+          padding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
+          margin: const EdgeInsets.all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text('Tanggal Awal'),
-              const SizedBox(height: 12,),
+              const SizedBox(height: 6,),
               XTextField(
-                controller: _tglAwalcontroller,
+                onSubmitted: (val) => {},
+                hintText: 'Contoh: 2020-12-31',
               ),
-              const SizedBox(height: 24,),
+              const SizedBox(height: 12,),
               const Text('Tanggal Akhir'),
-              const SizedBox(height: 12,),
+              const SizedBox(height: 6,),
               XTextField(
-                controller: _tglAkhircontroller,
+                onSubmitted: (val) => {},
+                hintText: 'Contoh: 2021-12-31',
               ),
               const SizedBox(height: 12,),
-              const Divider(),
-              FlatButton(onPressed: () {}, child: const Text('CARI'))
+              FlatButton(
+                color: primaryColor,
+                onPressed: () {}, 
+                child: const Text('CARI', style: TextStyle(color: Colors.white),)
+              )
             ],
           )
+        ),
+        const Divider(),
+        
+        FutureBuilder<List<Map>>(
+          future: getList(),
+          builder: (context, snapshot) => (snapshot.hasData) ? Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: List.generate(3, (index) => XBox(
+              child: SizedBox(
+                height: 150,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  // children: List.generate(content.length, (index) => Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     Text(content.keys.toList()[index], 
+                  //       style: appTheme.textTheme.subtitle1),
+                  //     Text(content.values.toList()[index], 
+                  //       style: appTheme.textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold)),
+                  //   ]
+                  // ))
+                ),
+              ),
+            ))
+          ) : const SizedBox(
+            height: 300,
+            child: Center(child: CircularProgressIndicator(),)
+          )
         )
+
       ],
     );
   }
