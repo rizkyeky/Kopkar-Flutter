@@ -14,8 +14,8 @@ class XBox extends StatelessWidget {
       margin: margin ?? const EdgeInsets.fromLTRB(24, 24, 24, 0),
       padding: padding ?? const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black.withOpacity(0.12), width: 3),
-        borderRadius: BorderRadius.circular(6)
+        border: Border.all(color: Colors.black.withOpacity(0.12)),
+        borderRadius: BorderRadius.circular(12)
       ),
       child: child
     );
