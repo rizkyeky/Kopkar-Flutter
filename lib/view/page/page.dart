@@ -21,7 +21,12 @@ part 'page_login.dart';
 part 'page_pinjaman.dart';
 part 'page_profile.dart';
 part 'page_simpanan.dart';
-part 'page_history_option.dart';
+
+part 'page_history_ppbo.dart';
+part 'page_history_simpanan.dart';
+part 'page_history_pembelian.dart';
+part 'page_history_potongan.dart';
+
 part 'page_detail_pinjaman.dart';
 part 'page_form_simpanan.dart';
 part 'page_form_pinjaman.dart';

@@ -40,8 +40,24 @@ class HistoryPage extends Page<HistoryBloc> {
             child: InkWell(
               onTap: () => Navigator.push(context, 
                 MaterialPageRoute(
-                  builder: (context) => 
-                    HistoryOptionPage(_options.values.toList()[index]))
+                  builder: (context) {
+                    switch (_options[index]) {
+                      case HistoryType.pembelian:
+                        return HistoryPPBOPage();
+                      case HistoryType.ppbo:
+                        return HistoryPPBOPage();
+                      case HistoryType.pinjaman:
+                        return HistoryPPBOPage();
+                      case HistoryType.potongan:
+                        return HistoryPPBOPage();
+                      case HistoryType.shu:
+                        return HistoryPPBOPage();
+                      case HistoryType.simpanan:
+                        return HistoryPPBOPage();
+                      default:
+                        return const Center(child: Text('No Page'));
+                    }                    
+                  })
                 ),
               child: SizedBox(
                 height: 54,

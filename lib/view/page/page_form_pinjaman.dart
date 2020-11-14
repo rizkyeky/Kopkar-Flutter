@@ -3,15 +3,10 @@ part of 'page.dart';
 class FormPinjamanPage extends Page<PinjamanBloc> {
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-  }
+  void dispose() {}
 
   @override
-  void init() {
-    // TODO: implement init
-  }
-
+  void init() {}
 
   Future<File> getImage() async {
     final picker = ImagePicker();
@@ -31,7 +26,7 @@ class FormPinjamanPage extends Page<PinjamanBloc> {
         title: const Text('Form Pinjaman'),
       ),
       body: FutureBuilder<void>(
-        future: _bloc.init(),
+        future: _bloc.getJenisPinjaman(),
         builder: (context, snapshot) => 
           (snapshot.connectionState == ConnectionState.done) ? SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 24),

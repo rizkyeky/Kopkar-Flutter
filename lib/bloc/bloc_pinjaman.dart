@@ -3,14 +3,10 @@ part of 'bloc.dart';
 class PinjamanBloc implements Bloc {
   @override
   void dispose() {
-    
   }
 
   @override
-  Future<void> init() async {
-    if (jenisPinjaman.isEmpty) {
-      jenisPinjaman.addAll(await getJenisPinjaman());
-    }
+  void init() {
   }
 
   String nikAnggota;
@@ -36,8 +32,10 @@ class PinjamanBloc implements Bloc {
     return _pinjamanBerjalanService.getPinjamanAjuan(nik);
   }
 
-  Future<List<Map>> getJenisPinjaman() async {
-    return _pinjamanBerjalanService.getJenisPinjaman();
+  Future<void> getJenisPinjaman() async {
+    if (jenisPinjaman.isEmpty) {
+      jenisPinjaman.addAll(await _pinjamanBerjalanService.getJenisPinjaman());
+    }
   }
 
 }

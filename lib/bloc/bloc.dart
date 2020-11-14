@@ -18,7 +18,12 @@ part 'bloc_login.dart';
 part 'bloc_profile.dart';
 part 'bloc_pinjaman.dart';
 part 'bloc_simpanan.dart';
-part 'bloc_historyoption.dart';
+
+part 'bloc_history_ppbo.dart';
+part 'bloc_history_simpanan.dart';
+part 'bloc_history_pembelian.dart';
+part 'bloc_history_potongan.dart';
+
 part 'bloc_detail_pinjaman.dart';
 
 abstract class Bloc {
