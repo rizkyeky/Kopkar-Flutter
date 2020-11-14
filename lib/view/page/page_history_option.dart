@@ -25,13 +25,18 @@ class HistoryOptionPage extends Page<HistoryOptionBloc> {
         name = 'Riwayat Pembelian';
         break;
       case HistoryType.simpanan:
-        body = HistorySimpananBody();
+        body = HistorySimpananBody(
+          onSubmittedDateAwal: (val) => _bloc.dateAwal = val,
+          onSubmittedDateAkhir: (val) => _bloc.dateAkhir = val,
+          onPressedCari: _bloc.getSimpananList,
+          getList: _bloc.getSimpananList,
+        );
         name = 'Riwayat Simpanan';
         break;
-      case HistoryType.shu:
-        body = HistorySimpananBody();
-        name = 'Riwayat SHU';
-        break;
+      // case HistoryType.shu:
+      //   body = HistorySimpananBody();
+      //   name = 'Riwayat SHU';
+      //   break;
       case HistoryType.ppbo:
         body = HistoryPPBO(
           getList: _bloc.getPPBOList
@@ -136,8 +141,18 @@ class HistoryPembelianBody extends StatelessWidget {
 class HistorySimpananBody extends StatelessWidget {
   
   final Future<List<Map>> Function() getList;
+  final void Function(String) onSubmittedDateAwal;
+  final void Function(String) onSubmittedDateAkhir;
+  final void Function() onPressedCari;
+  final ValueNotifier<bool> notifierCari = ValueNotifier(null);
 
-  const HistorySimpananBody({Key key, this.getList}) : super(key: key);
+  HistorySimpananBody({
+    Key key, 
+    this.getList,
+    this.onSubmittedDateAwal,
+    this.onSubmittedDateAkhir,
+    this.onPressedCari,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -152,20 +167,22 @@ class HistorySimpananBody extends StatelessWidget {
               const Text('Tanggal Awal'),
               const SizedBox(height: 6,),
               XTextField(
-                onSubmitted: (val) => {},
+                onChanged: onSubmittedDateAwal,
                 hintText: 'Contoh: 2020-12-31',
               ),
               const SizedBox(height: 12,),
               const Text('Tanggal Akhir'),
               const SizedBox(height: 6,),
               XTextField(
-                onSubmitted: (val) => {},
+                onChanged: onSubmittedDateAkhir,
                 hintText: 'Contoh: 2021-12-31',
               ),
               const SizedBox(height: 12,),
               FlatButton(
                 color: primaryColor,
-                onPressed: () {}, 
+                onPressed: () => notifierCari.value != null ? 
+                  notifierCari.value = !notifierCari.value 
+                  : notifierCari.value = false,
                 child: const Text('CARI', style: TextStyle(color: Colors.white),)
               )
             ],
@@ -173,32 +190,44 @@ class HistorySimpananBody extends StatelessWidget {
         ),
         const Divider(),
         
-        FutureBuilder<List<Map>>(
-          future: getList(),
-          builder: (context, snapshot) => (snapshot.hasData) ? Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: List.generate(3, (index) => XBox(
-              child: SizedBox(
-                height: 150,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  // children: List.generate(content.length, (index) => Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     Text(content.keys.toList()[index], 
-                  //       style: appTheme.textTheme.subtitle1),
-                  //     Text(content.values.toList()[index], 
-                  //       style: appTheme.textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold)),
-                  //   ]
-                  // ))
+        ValueListenableBuilder<bool>(
+          valueListenable: notifierCari,
+          builder: (context, value, child) => (value != null) ? FutureBuilder<List<Map>>(
+            future: getList(),
+            builder: (context, snapshot) => (snapshot.hasData) ? (snapshot.data.isNotEmpty) ? Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: List.generate(snapshot.data.length, (indexContent) {
+                final List<Map> content = snapshot.data;
+                return XBox(
+                child: SizedBox(
+                  height: 150,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: List.generate(content[indexContent].length, (indexItem) {
+                      final Map<String, String> item = Map<String, String>.from(content[indexContent]);
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(item.keys.toList()[indexItem] ?? '', 
+                            style: appTheme.textTheme.subtitle1),
+                          Text(item.values.toList()[indexItem] ?? '', 
+                            style: appTheme.textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold)),
+                        ]
+                      );
+                    })
+                  ),
                 ),
-              ),
-            ))
-          ) : const SizedBox(
-            height: 300,
-            child: Center(child: CircularProgressIndicator(),)
-          )
+              );
+              })
+            ) : const SizedBox(
+                height: 300,
+                child: Center(child: Text('Tidak Ada Data'),))
+              : const SizedBox(
+              height: 300,
+              child: Center(child: CircularProgressIndicator(),)
+            )
+          ) : const Center(),
         )
 
       ],

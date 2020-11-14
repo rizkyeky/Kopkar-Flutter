@@ -16,22 +16,22 @@ class LoginPage extends Page<LoginBloc> {
           child: Column(
             children: <Widget>[
               SizedBox(
-                height: 300,
+                height: 200,
                 width: MediaQuery.of(context).size.width,
                 child: CustomPaint(
                   painter: PaintLogin(),
                 ),
-              ),
+              ), 
               const SizedBox(height: 24,),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(24, 24, 24, 0),
                 child: XTextField(
                   // controller: _emailText,
                   text: 'Email',
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(24),
+              const Padding(
+                padding: EdgeInsets.all(24),
                 child: XTextField(
                   obscureText: true,
                   // controller: _passwordText,

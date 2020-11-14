@@ -3,6 +3,10 @@ library bloc;
 // import 'dart:math';
 // import 'package:rxdart/rxdart.dart';
 
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
+
 import '../locator.dart';
 import '../model/model.dart';
 import '../service/service.dart';

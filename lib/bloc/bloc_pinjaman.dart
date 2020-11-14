@@ -7,17 +7,24 @@ class PinjamanBloc implements Bloc {
   }
 
   @override
-  void init() {
-    
+  Future<void> init() async {
+    if (jenisPinjaman.isEmpty) {
+      jenisPinjaman.addAll(await getJenisPinjaman());
+    }
   }
 
   String nikAnggota;
   String gajiPokok;
-  String jenis;
-  String jenisPinjaman;
+  Map<String, String> inputJenisPinjaman;
   String nominalPinjaman;
   String tenor;
   String keperluan;
+
+  File inputFotoKTP;
+  File inputFotoSlipGaji;
+  File inputFotoNPWP;
+
+  List<Map> jenisPinjaman = [];
 
   final PinjamanService _pinjamanBerjalanService = locator.get<PinjamanService>();
 
@@ -27,7 +34,10 @@ class PinjamanBloc implements Bloc {
 
   Future<List<PinjamanAjuan>> getPinjamanAjuanFromService(String nik) async {
     return _pinjamanBerjalanService.getPinjamanAjuan(nik);
-  } 
+  }
 
-  
+  Future<List<Map>> getJenisPinjaman() async {
+    return _pinjamanBerjalanService.getJenisPinjaman();
+  }
+
 }

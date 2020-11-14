@@ -38,7 +38,7 @@ class FormSimpananPage extends Page<SimpananBloc> {
               padding: const EdgeInsets.fromLTRB(0,18,0,6),
               child: Text('Jenis', 
                 textAlign: TextAlign.left,
-                style: appTheme.textTheme.headline5.copyWith(fontSize: 18),
+                style: appTheme.textTheme.headline5.copyWith(fontSize: 16),
               ),
             ),
             XDropDown(
@@ -50,7 +50,7 @@ class FormSimpananPage extends Page<SimpananBloc> {
               padding: const EdgeInsets.fromLTRB(0,18,0,6),
               child: Text('Jenis Pinjaman', 
                 textAlign: TextAlign.left,
-                style: appTheme.textTheme.headline5.copyWith(fontSize: 18),
+                style: appTheme.textTheme.headline5.copyWith(fontSize: 16),
               ),
             ),
             XDropDown(
@@ -108,7 +108,7 @@ class TexFieldSimpanan extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(0,18,0,6),
           child: Text(title, 
             textAlign: TextAlign.left,
-            style: appTheme.textTheme.headline5.copyWith(fontSize: 18),
+            style: appTheme.textTheme.headline5.copyWith(fontSize: 16),
           ),
         ),
         XTextField(

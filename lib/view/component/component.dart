@@ -6,7 +6,6 @@ part 'xbox.dart';
 part 'xbutton.dart';
 part 'xdropdown.dart';
 part 'xtextfield.dart';
-part 'xtopprogressindicator.dart';
 
 SnackBar snackBar({
   String contentText, String labelText, VoidCallback onPressed

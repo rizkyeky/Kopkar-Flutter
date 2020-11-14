@@ -15,6 +15,13 @@ class HistoryOptionBloc implements Bloc {
 
   Future<List<Map>> getPPBOList() async {
     return _historyService.getPpobTrans('07380');
-  } 
+  }
+
+  String dateAwal = '';
+  String dateAkhir = '';
+
+  Future<List<Map>> getSimpananList() {
+    return _historyService.getSimpananTransDate('07380', dateAwal, dateAkhir);
+  }
 
 }
