@@ -6,6 +6,8 @@ import 'service/service.dart';
 
 GetIt locator = GetIt.instance;
 
+enum HistoryType {pembelian, simpananwajib, simpanansuk, ppbo, potongan, pinjaman}
+
 Future<void> setLocator() async {
 
   locator.registerLazySingleton(() => ConnectionService.getInstance());

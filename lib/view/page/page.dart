@@ -31,8 +31,6 @@ part 'page_detail_pinjaman.dart';
 part 'page_form_simpanan.dart';
 part 'page_form_pinjaman.dart';
 
-enum HistoryType {pembelian, simpanan, shu, ppbo, potongan, pinjaman}
-
 abstract class Page<T extends Bloc> extends StatefulWidget {
 
   final T _bloc = locator<T>();

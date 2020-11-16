@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:http/http.dart' as http;
+import 'package:kopkar/locator.dart';
 
 import '../model/model.dart';
 

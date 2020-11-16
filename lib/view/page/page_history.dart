@@ -41,19 +41,19 @@ class HistoryPage extends Page<HistoryBloc> {
               onTap: () => Navigator.push(context, 
                 MaterialPageRoute(
                   builder: (context) {
-                    switch (_options[index]) {
+                    switch (_options.values.toList()[index]) {
                       case HistoryType.pembelian:
-                        return HistoryPPBOPage();
+                        return HistoryPembelianPage();
                       case HistoryType.ppbo:
                         return HistoryPPBOPage();
                       case HistoryType.pinjaman:
                         return HistoryPPBOPage();
                       case HistoryType.potongan:
-                        return HistoryPPBOPage();
+                        return HistoryPotonganPage();
                       case HistoryType.shu:
-                        return HistoryPPBOPage();
+                        return const Center(child: Text('SHU Page'));
                       case HistoryType.simpanan:
-                        return HistoryPPBOPage();
+                        return HistorySimpananPage();
                       default:
                         return const Center(child: Text('No Page'));
                     }                    
