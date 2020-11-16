@@ -13,8 +13,8 @@ class HistoryPage extends Page<HistoryBloc> {
     'Riwayat PPBO': HistoryType.ppbo,
     'Riwayat Pinjaman': HistoryType.pinjaman,
     'Riwayat Potongan Bulanan': HistoryType.potongan,
-    'Riwayat SHU': HistoryType.shu,
-    'Riwayat Simpan Wajib': HistoryType.simpanan
+    'Riwayat Simpanan Wajib': HistoryType.simpananwajib,
+    'Riwayat Simpanan Sukarela': HistoryType.simpanansuk
   };
 
   @override
@@ -50,9 +50,9 @@ class HistoryPage extends Page<HistoryBloc> {
                         return HistoryPPBOPage();
                       case HistoryType.potongan:
                         return HistoryPotonganPage();
-                      case HistoryType.shu:
+                      case HistoryType.simpananwajib:
                         return const Center(child: Text('SHU Page'));
-                      case HistoryType.simpanan:
+                      case HistoryType.simpanansuk:
                         return HistorySimpananPage();
                       default:
                         return const Center(child: Text('No Page'));

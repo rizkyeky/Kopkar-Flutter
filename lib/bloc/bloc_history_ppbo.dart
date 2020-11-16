@@ -12,7 +12,7 @@ class HistoryPPBOBloc implements Bloc {
   final HistoryService _historyService = locator.get<HistoryService>();
 
   Future<List<Map>> getPPBOList() async {
-    return _historyService.getPpobTrans('07380');
+    return _historyService.getRiwayatPPBO('07380');
   }
 
 }
