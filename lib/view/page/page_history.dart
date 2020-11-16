@@ -1,12 +1,6 @@
 part of 'page.dart';
 
-class HistoryPage extends Page<HistoryBloc> {
-
-  @override
-  void dispose() {}
-
-  @override
-  void init() {}
+class HistoryPage extends StatelessWidget {
 
   final Map<String, HistoryType> _options = {
     'Riwayat Pembelian Toko': HistoryType.pembelian,
@@ -53,7 +47,7 @@ class HistoryPage extends Page<HistoryBloc> {
                       case HistoryType.simpananwajib:
                         return const Center(child: Text('SHU Page'));
                       case HistoryType.simpanansuk:
-                        return HistorySimpananPage();
+                        return HistorySimpananWPage();
                       default:
                         return const Center(child: Text('No Page'));
                     }                    

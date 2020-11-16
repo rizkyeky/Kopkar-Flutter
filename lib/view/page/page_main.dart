@@ -2,11 +2,11 @@ part of 'page.dart';
 
 class MainPage extends StatelessWidget {
   
-  final Page homePage = HomePage();
-  final Page pinjamanPage = PinjamanPage();
-  final Page simpananPage = SimpananPage();
-  final Page historyPage = HistoryPage();
-  final Page profilePage = ProfilePage();
+  final Widget homePage = HomePage();
+  final Widget pinjamanPage = PinjamanPage();
+  final Widget simpananPage = SimpananPage();
+  final Widget historyPage = HistoryPage();
+  final Widget profilePage = ProfilePage();
 
   final List<Widget> pages = [];
 
