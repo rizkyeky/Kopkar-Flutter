@@ -23,7 +23,8 @@ part 'page_profile.dart';
 part 'page_simpanan.dart';
 
 part 'page_history_ppbo.dart';
-part 'page_history_simpanan.dart';
+part 'page_history_simpananw.dart';
+part 'page_history_simpanansuk.dart';
 part 'page_history_pembelian.dart';
 part 'page_history_potongan.dart';
 

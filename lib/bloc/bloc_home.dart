@@ -10,5 +10,4 @@ class HomeBloc implements Bloc {
   void init() {
     // TODO: implement init
   }
-
 }

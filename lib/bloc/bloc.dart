@@ -12,7 +12,6 @@ import '../model/model.dart';
 import '../service/service.dart';
 // import 'package:flutter/foundation.dart';
 
-part 'bloc_history.dart';
 part 'bloc_home.dart';
 part 'bloc_login.dart';
 part 'bloc_profile.dart';
