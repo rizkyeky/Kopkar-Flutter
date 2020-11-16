@@ -11,4 +11,13 @@ class HistoryPembelianBloc implements Bloc {
     // TODO: implement init
   }
 
+  final HistoryService _historyService = locator.get<HistoryService>();
+
+  Future<List<Map>> getItems() {
+    return _historyService.getRiwayat(HistoryType.pembelian, 
+      nik: '07380',
+      dateAwal: '2020-04-01', 
+      dateAkhir: '2020-04-30'
+    );
+  }
 }

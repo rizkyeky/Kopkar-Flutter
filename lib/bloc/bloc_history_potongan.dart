@@ -11,4 +11,7 @@ class HistoryPotoganBloc implements Bloc {
     // TODO: implement init
   }
 
+  final HistoryService _historyService = locator.get<HistoryService>();
+
+
 }
