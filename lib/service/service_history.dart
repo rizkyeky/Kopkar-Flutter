@@ -42,7 +42,7 @@ class HistoryService {
     Map<String, String> bodyPost;
     switch (type) {
       case HistoryType.pembelian:
-        bodyPost = isDetail ? {
+        bodyPost = !isDetail ? {
           'nik_kar': nik,
           'dateAwal': dateAwal,
           'dateAkhir': dateAkhir
@@ -51,7 +51,7 @@ class HistoryService {
         };
         break;
       case HistoryType.pinjaman:
-        bodyPost = isDetail ? {
+        bodyPost = !isDetail ? {
           'nik': nik,
         } : {
           'doc_no': doc
@@ -63,7 +63,7 @@ class HistoryService {
         };
         break;
       case HistoryType.potongan:
-        bodyPost = isDetail ? {
+        bodyPost = !isDetail ? {
           'nik_kar': nik,
           'dateAwal': dateAwal,
           'dateAkhir': dateAkhir
@@ -101,7 +101,8 @@ class HistoryService {
       final Map data = json.decode(response.body) as Map;
       final bool isSuccess = data['status'] == '200';
 
-      if (response.statusCode != 200 || isSuccess) {
+      if (response.statusCode != 200 || !isSuccess) {
+        // print('status code != 200');
         return [];
       } else {
         final List<Map> result = (data['result'] as List)
@@ -109,6 +110,7 @@ class HistoryService {
         return result;
       }
     } catch (e) {
+      // print(e);
       return [];
     }
   }
@@ -126,7 +128,7 @@ class HistoryService {
     final Map data = json.decode(response.body) as Map;
     final bool isSuccess = data['status'] == '200';
 
-    if (response.statusCode != 200 || isSuccess) {
+    if (response.statusCode != 200 || !isSuccess) {
       return [];
     } else {
       final List<Map> result = (data['result'] as List)
@@ -150,7 +152,7 @@ class HistoryService {
     final Map data = json.decode(response.body) as Map;
     final bool isSuccess = data['status'] == '200';
 
-    if (response.statusCode != 200 || isSuccess) {
+    if (response.statusCode != 200 || !isSuccess) {
       return [];
     } else {
       final List<Map> result = (data['result'] as List)
@@ -174,7 +176,7 @@ class HistoryService {
     final Map data = json.decode(response.body) as Map;
     final bool isSuccess = data['status'] == '200';
 
-    if (response.statusCode != 200 || isSuccess) {
+    if (response.statusCode != 200 || !isSuccess) {
       return [];
     } else {
       final List<Map> result = (data['result'] as List)
