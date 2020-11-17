@@ -84,7 +84,6 @@ class HistorySimpananWPage extends Page<HistorySimpananBloc> {
             )
           ) : const Center(),
         )
-
       ],
     ),
     );

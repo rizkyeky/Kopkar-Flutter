@@ -19,8 +19,6 @@ part 'bloc_history_simpanan.dart';
 part 'bloc_history_pembelian.dart';
 part 'bloc_history_potongan.dart';
 
-part 'bloc_detail_pinjaman.dart';
-
 abstract class Bloc {
   void init();
   void dispose();

@@ -5,7 +5,7 @@ class HistoryPage extends StatelessWidget {
   final Map<String, HistoryType> _options = {
     'Riwayat Pembelian Toko': HistoryType.pembelian,
     'Riwayat PPBO': HistoryType.ppbo,
-    'Riwayat Pinjaman': HistoryType.pinjaman,
+    // 'Riwayat Pinjaman': HistoryType.pinjaman,
     'Riwayat Potongan Bulanan': HistoryType.potongan,
     'Riwayat Simpanan Wajib': HistoryType.simpananwajib,
     'Riwayat Simpanan Sukarela': HistoryType.simpanansuk
@@ -40,8 +40,8 @@ class HistoryPage extends StatelessWidget {
                         return HistoryPembelianPage();
                       case HistoryType.ppbo:
                         return HistoryPPBOPage();
-                      case HistoryType.pinjaman:
-                        return HistoryPPBOPage();
+                      // case HistoryType.pinjaman:
+                      //   return HistoryPPBOPage();
                       case HistoryType.potongan:
                         return HistoryPotonganPage();
                       case HistoryType.simpananwajib:

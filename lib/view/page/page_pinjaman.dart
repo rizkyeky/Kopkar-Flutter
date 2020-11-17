@@ -32,14 +32,14 @@ class PinjamanPage extends Page<PinjamanBloc> {
                 future: _bloc.getPinjamanBerjalanFromService('07380'),
                 builder: (context, snapshot) => (snapshot.hasData) ? ListView.builder(
                   itemCount: snapshot.data.length,
-                  itemBuilder: (context, index) => PinjamanCard(snapshot.data[index])
+                  itemBuilder: (context, index) => PinjamanCard(snapshot.data[index], _bloc)
                 ) : const Center(child: CircularProgressIndicator(),)
               ),
               FutureBuilder<List<PinjamanAjuan>>(
                 future: _bloc.getPinjamanAjuanFromService('07380'),
                 builder: (context, snapshot) => (snapshot.hasData) ? ListView.builder(
                   itemCount: snapshot.data.length,
-                  itemBuilder: (context, index) => PinjamanCard(snapshot.data[index])
+                  itemBuilder: (context, index) => PinjamanCard(snapshot.data[index], _bloc)
                 ) : const Center(child: CircularProgressIndicator(),)
               ),
             ]
@@ -60,8 +60,9 @@ class PinjamanPage extends Page<PinjamanBloc> {
 class PinjamanCard extends StatelessWidget {
 
   final PinjamanItem item;
+  final PinjamanBloc bloc;
 
-  const PinjamanCard(this.item, {Key key}) : super(key: key);
+  const PinjamanCard(this.item, this.bloc, {Key key}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
@@ -164,7 +165,7 @@ class PinjamanCard extends StatelessWidget {
           FlatButton(
             onPressed: () =>Navigator.push(
               context, MaterialPageRoute(
-                builder: (context) => DetailPinjamanPage(item.docNo)
+                builder: (context) => DetailPage(item.docNo, bloc.getTable, name: 'Detail Pinjaman')
               )
             ), 
             child: const Text('LIHAT DETAIL')

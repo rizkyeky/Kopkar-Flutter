@@ -26,10 +26,9 @@ part 'page_history_ppbo.dart';
 part 'page_history_simpananw.dart';
 part 'page_history_simpanansuk.dart';
 part 'page_history_pembelian.dart';
-part 'page_history_pembelian_detail.dart';
 part 'page_history_potongan.dart';
 
-part 'page_detail_pinjaman.dart';
+part 'page_detail.dart';
 part 'page_form_simpanan.dart';
 part 'page_form_pinjaman.dart';
 

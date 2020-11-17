@@ -38,4 +38,8 @@ class PinjamanBloc implements Bloc {
     }
   }
 
+  Future<List<Map>> getTable(String docNo) {
+    return _pinjamanBerjalanService.getDetailPinjamanBerjalan(docNo);
+  }
+
 }

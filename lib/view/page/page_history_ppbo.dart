@@ -15,6 +15,10 @@ class HistoryPPBOPage extends Page<HistoryPPBOBloc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: const Text('Riwayat PPBO'),
+      ),
       body: FutureBuilder<List<Map>>(
       future: _bloc.getList(),
       builder: (context, snapshot) {

@@ -13,5 +13,8 @@ class HistoryPotoganBloc implements Bloc {
 
   final HistoryService _historyService = locator.get<HistoryService>();
 
-
+  Future<List<Map>> getList() async {
+    return _historyService.getRiwayat(HistoryType.potongan, 
+      nik:' 01739', dateAwal: '2020-01-01', dateAkhir: '2020-07-30');
+  }
 }

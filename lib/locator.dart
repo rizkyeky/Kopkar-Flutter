@@ -18,11 +18,11 @@ Future<void> setLocator() async {
   locator.registerFactory(() => LoginBloc());
   locator.registerFactory(() => PinjamanBloc());
   locator.registerFactory(() => SimpananBloc());
-  locator.registerFactory(() => DetailPinjamanBloc());
   
   locator.registerFactory(() => HistorySimpananBloc());
   locator.registerFactory(() => HistoryPembelianBloc());
   locator.registerFactory(() => HistoryPPBOBloc());
+  locator.registerFactory(() => HistoryPotoganBloc());
   
   await locator.allReady();
   // await locator.get<GraphService>().init();

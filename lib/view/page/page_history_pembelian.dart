@@ -30,17 +30,17 @@ class HistoryPembelianPage extends Page<HistoryPembelianBloc> {
               clipBehavior: Clip.antiAlias,
               elevation: 0,
               shape: RoundedRectangleBorder(
-                side: BorderSide(width: 2, color: Theme.of(context).dividerColor),
+                side: BorderSide(color: Theme.of(context).dividerColor),
                 borderRadius: BorderRadius.circular(12)
               ),
               child: InkWell(
                 onTap: () => Navigator.push(context, 
                   MaterialPageRoute(builder: (context) => 
-                    HistoryPembelianDetailPage(item['doc_no'] as String))),
+                    DetailPage(item['doc_no'] as String, _bloc.getTable, name: 'Detail Pembelian'))),
                 child: SizedBox(
                   height: 150,
                   child: Padding(
-                    padding: const EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(24),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.start,
