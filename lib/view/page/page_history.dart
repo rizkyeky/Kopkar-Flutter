@@ -45,9 +45,9 @@ class HistoryPage extends StatelessWidget {
                       case HistoryType.potongan:
                         return HistoryPotonganPage();
                       case HistoryType.simpananwajib:
-                        return const Center(child: Text('SHU Page'));
-                      case HistoryType.simpanansuk:
                         return HistorySimpananWPage();
+                      case HistoryType.simpanansuk:
+                        return HistorySimpananSukPage();
                       default:
                         return const Center(child: Text('No Page'));
                     }                    
