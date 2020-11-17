@@ -23,4 +23,12 @@ class HistoryPotoganBloc implements Bloc {
       dateAkhir: inputAkhirDate != null ? inputAkhirDate.toLocal().toString().split(' ')[0] : ''
     );
   }
+
+  Future<List<Map>> getTable(String doc) {
+    return _historyService.getRiwayat(HistoryType.potongan,
+      isDetail: true,
+      doc: doc,
+      nik: '01739'
+    );
+  }
 }
