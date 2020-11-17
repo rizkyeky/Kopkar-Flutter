@@ -111,26 +111,38 @@ class HistoryPotonganPage extends Page<HistoryPotoganBloc> {
               ? snapshot.data.isNotEmpty ? Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: List.generate(snapshot.data.length, (indexContent) {
-                final List<Map> content = snapshot.data;
-                return XBox(
+                  final Map item = snapshot.data[indexContent];
+                return Card(
                   margin: const EdgeInsets.only(bottom: 16),
-                  child: SizedBox(
-                    height: 270,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: List.generate(content[indexContent].length, (indexItem) {
-                        final Map<String, String> item = Map<String, String>.from(content[indexContent]);
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(item.keys.toList()[indexItem] ?? 'null', 
-                              style: appTheme.textTheme.subtitle1),
-                            Text(item.values.toList()[indexItem] ?? 'null', 
-                              style: appTheme.textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold)),
-                          ]
-                        );
-                      })
+                  clipBehavior: Clip.antiAlias,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(color: Theme.of(context).dividerColor),
+                    borderRadius: BorderRadius.circular(12)
+                  ),
+                  child: InkWell(
+                    onTap: () => Navigator.push(context, 
+                      MaterialPageRoute(builder: (context) => 
+                        DetailPage(item['doc_no'] as String, _bloc.getTable, name: 'Detail Pembelian'))),
+                    child: SizedBox(
+                      height: 300,
+                      child: Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: List.generate(item.length, (indexCol) => Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(item.keys.toList()[indexCol] as String ?? 'null',
+                                style: appTheme.textTheme.subtitle1),
+                              Text(item.values.toList()[indexCol] as String ?? 'null', 
+                                style: appTheme.textTheme.subtitle2
+                                .copyWith(fontWeight: FontWeight.bold)),
+                            ]
+                          ))
+                        ),
+                      ),
                     ),
                   ),
                 );
