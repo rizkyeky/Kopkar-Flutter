@@ -5,14 +5,10 @@ library bloc;
 
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
-
 import '../locator.dart';
 import '../model/model.dart';
 import '../service/service.dart';
-// import 'package:flutter/foundation.dart';
 
-part 'bloc_home.dart';
 part 'bloc_login.dart';
 part 'bloc_profile.dart';
 part 'bloc_pinjaman.dart';

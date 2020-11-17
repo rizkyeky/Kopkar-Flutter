@@ -14,12 +14,10 @@ Future<void> setLocator() async {
   locator.registerLazySingleton(() => PinjamanService());
   locator.registerLazySingleton(() => HistoryService());
   
-  locator.registerFactory(() => HomeBloc());
   locator.registerFactory(() => ProfileBloc());
   locator.registerFactory(() => LoginBloc());
   locator.registerFactory(() => PinjamanBloc());
   locator.registerFactory(() => SimpananBloc());
-  locator.registerFactory(() => HistoryBloc());
   locator.registerFactory(() => DetailPinjamanBloc());
   
   locator.registerFactory(() => HistorySimpananBloc());
