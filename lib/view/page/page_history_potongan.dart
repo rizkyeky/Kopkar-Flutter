@@ -71,7 +71,7 @@ class HistoryPotonganPage extends Page<HistoryPotoganBloc> {
                           builder: (context, setState) => FlatButton(
                             color: primaryColor,
                             onPressed:() async {
-                              pickedAwalDate = await showDatePicker(
+                              pickedAkhirDate = await showDatePicker(
                                 context: context, 
                                 initialDate: DateTime.now(), 
                                 firstDate: DateTime(2000), 
