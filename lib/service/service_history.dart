@@ -113,78 +113,8 @@ class HistoryService {
         return result;
       }
     } catch (e) {
-      print(e);
+      // print(e);
       return [];
-    }
-  }
-
-  Future<List<Map>> getRiwayatPPBO(String nik) async {
-    
-    const String _subBase = 'koperasi_api/api_v1/getPpobTrans';
-    final Uri _uri = Uri.http(_homeBase, _subBase);
-    
-    final http.Response response = await _client.post(_uri, body: {
-      'nik_kar': nik
-    })
-      .timeout(const Duration(seconds: 10));
-
-    final Map data = json.decode(response.body) as Map;
-    final bool isSuccess = data['status'] == '200';
-
-    if (response.statusCode != 200 || !isSuccess) {
-      return [];
-    } else {
-      final List<Map> result = (data['result'] as List)
-        .map((e) => Map.from(e as Map)).toList();
-      return result;
-    }
-  }
-
-  Future<List<Map>> getRiwayatSimpanan(String nik, String dateAwal, String dateAkhir) async {
-    
-    const String _subBase = 'koperasi_api/api_v1/getTransSimpanWajib';
-    final Uri _uri = Uri.http(_homeBase, _subBase);
-    
-    final http.Response response = await _client.post(_uri, body: {
-      'nik_kar': nik,
-      'dateAwal': dateAwal,
-      'dateAkhir': dateAkhir,
-    })
-      .timeout(const Duration(seconds: 10));
-
-    final Map data = json.decode(response.body) as Map;
-    final bool isSuccess = data['status'] == '200';
-
-    if (response.statusCode != 200 || !isSuccess) {
-      return [];
-    } else {
-      final List<Map> result = (data['result'] as List)
-        .map((e) => Map.from(e as Map)).toList();
-      return result;
-    }
-  }
-
-  Future<List<Map>> getRiwayatPembelian(String nik, String dateAwal, String dateAkhir) async {
-    
-    const String _subBase = 'koperasi_api/index.php/Api_v1/getPosTransDate';
-    final Uri _uri = Uri.http(_homeBase, _subBase);
-    
-    final http.Response response = await _client.post(_uri, body: {
-      'nik_kar': nik,
-      'dateAwal': dateAwal,
-      'dateAkhir': dateAkhir,
-    })
-      .timeout(const Duration(seconds: 10));
-
-    final Map data = json.decode(response.body) as Map;
-    final bool isSuccess = data['status'] == '200';
-
-    if (response.statusCode != 200 || !isSuccess) {
-      return [];
-    } else {
-      final List<Map> result = (data['result'] as List)
-        .map((e) => Map.from(e as Map)).toList();
-      return result;
     }
   }
 }
