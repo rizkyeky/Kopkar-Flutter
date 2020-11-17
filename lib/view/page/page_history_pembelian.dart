@@ -24,10 +24,10 @@ class HistoryPembelianPage extends Page<HistoryPembelianBloc> {
         title: const Text('Riwayat Pembelian'),
       ),
       body: ListView(
+        padding: const EdgeInsets.all(16),
         children: [
           XBox(
-            padding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
-            margin: const EdgeInsets.all(12),
+            margin: const EdgeInsets.all(0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -47,6 +47,7 @@ class HistoryPembelianPage extends Page<HistoryPembelianBloc> {
                                 initialDate: DateTime.now(), 
                                 firstDate: DateTime(2000), 
                                 lastDate: DateTime(2025),
+                                initialEntryMode: DatePickerEntryMode.input
                               );
                               if (pickedAwalDate != null && pickedAwalDate != _bloc.inputAwalDate) {
                                 setState(() => _bloc.inputAwalDate = pickedAwalDate);
@@ -74,6 +75,7 @@ class HistoryPembelianPage extends Page<HistoryPembelianBloc> {
                                 initialDate: DateTime.now(), 
                                 firstDate: DateTime(2000), 
                                 lastDate: DateTime(2025),
+                                initialEntryMode: DatePickerEntryMode.input
                               );
                               if (pickedAkhirDate != null && pickedAkhirDate != _bloc.inputAkhirDate) {
                                 setState(() => _bloc.inputAkhirDate = pickedAkhirDate);
@@ -108,6 +110,7 @@ class HistoryPembelianPage extends Page<HistoryPembelianBloc> {
                   children: List.generate(snapshot.data.length, (indexContent) {
                   final Map item = snapshot.data[indexContent];
                   return Card(
+                    margin: const EdgeInsets.only(bottom: 16),
                     clipBehavior: Clip.antiAlias,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
@@ -141,8 +144,13 @@ class HistoryPembelianPage extends Page<HistoryPembelianBloc> {
                     ),
                   );
                 })
-              ) : const Center(child: Text('Data tidak ditemukan'),) 
-              : const Center(child: CircularProgressIndicator(),)
+              ) : const SizedBox(
+                  height: 300,
+                  child: Center(child: Text('Data tidak ditemukan'),))
+              : const SizedBox(
+                height: 300,
+                child: Center(child: CircularProgressIndicator(),)
+              )
             ) : const Center(),
           ),
         ],

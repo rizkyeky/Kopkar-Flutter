@@ -26,10 +26,10 @@ class HistoryPotonganPage extends Page<HistoryPotoganBloc> {
         elevation: 0,
       ),
       body: ListView(
+        padding: const EdgeInsets.all(16),
         children: [
           XBox(
-            padding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
-            margin: const EdgeInsets.all(12),
+            margin: const EdgeInsets.all(0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -49,6 +49,7 @@ class HistoryPotonganPage extends Page<HistoryPotoganBloc> {
                                 initialDate: DateTime.now(), 
                                 firstDate: DateTime(2000), 
                                 lastDate: DateTime(2025),
+                                initialEntryMode: DatePickerEntryMode.input
                               );
                               if (pickedAwalDate != null && pickedAwalDate != _bloc.inputAwalDate) {
                                 setState(() => _bloc.inputAwalDate = pickedAwalDate);
@@ -76,6 +77,7 @@ class HistoryPotonganPage extends Page<HistoryPotoganBloc> {
                                 initialDate: DateTime.now(), 
                                 firstDate: DateTime(2000), 
                                 lastDate: DateTime(2025),
+                                initialEntryMode: DatePickerEntryMode.input
                               );
                               if (pickedAkhirDate != null && pickedAkhirDate != _bloc.inputAkhirDate) {
                                 setState(() => _bloc.inputAkhirDate = pickedAkhirDate);
@@ -111,26 +113,27 @@ class HistoryPotonganPage extends Page<HistoryPotoganBloc> {
               children: List.generate(snapshot.data.length, (indexContent) {
                 final List<Map> content = snapshot.data;
                 return XBox(
-                child: SizedBox(
-                  height: 270,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: List.generate(content[indexContent].length, (indexItem) {
-                      final Map<String, String> item = Map<String, String>.from(content[indexContent]);
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(item.keys.toList()[indexItem] ?? 'null', 
-                            style: appTheme.textTheme.subtitle1),
-                          Text(item.values.toList()[indexItem] ?? 'null', 
-                            style: appTheme.textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold)),
-                        ]
-                      );
-                    })
+                  margin: const EdgeInsets.only(bottom: 16),
+                  child: SizedBox(
+                    height: 270,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: List.generate(content[indexContent].length, (indexItem) {
+                        final Map<String, String> item = Map<String, String>.from(content[indexContent]);
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(item.keys.toList()[indexItem] ?? 'null', 
+                              style: appTheme.textTheme.subtitle1),
+                            Text(item.values.toList()[indexItem] ?? 'null', 
+                              style: appTheme.textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold)),
+                          ]
+                        );
+                      })
+                    ),
                   ),
-                ),
-              );
+                );
               })
             ) : const SizedBox(
                 height: 300,
