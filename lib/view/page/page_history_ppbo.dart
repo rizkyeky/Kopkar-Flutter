@@ -16,7 +16,7 @@ class HistoryPPBOPage extends Page<HistoryPPBOBloc> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<List<Map>>(
-      future: _bloc.getPPBOList(),
+      future: _bloc.getList(),
       builder: (context, snapshot) {
         final List<Map> content = (snapshot.hasData) ? snapshot.data : [{}];
         return (snapshot.hasData) ? ListView.builder(
