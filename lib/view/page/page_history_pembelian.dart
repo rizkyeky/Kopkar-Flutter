@@ -131,9 +131,9 @@ class HistoryPembelianPage extends Page<HistoryPembelianBloc> {
                             children: List.generate(item.length, (indexCol) => Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(item.keys.toList()[indexCol] as String,
+                                Text(item.keys.toList()[indexCol] as String ?? 'null',
                                   style: appTheme.textTheme.subtitle1),
-                                Text(item.values.toList()[indexCol] as String, 
+                                Text(item.values.toList()[indexCol] as String ?? 'null', 
                                   style: appTheme.textTheme.subtitle2
                                   .copyWith(fontWeight: FontWeight.bold)),
                               ]
