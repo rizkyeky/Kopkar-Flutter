@@ -20,4 +20,11 @@ class HistoryPembelianBloc implements Bloc {
       dateAkhir: '2020-04-30'
     );
   }
+
+  Future<List<Map>> getTable(String doc) {
+    return _historyService.getRiwayat(HistoryType.pembelian,
+      isDetail: true,
+      doc: doc
+    );
+  }
 }
