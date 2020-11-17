@@ -16,6 +16,10 @@ class HistoryPotonganPage extends Page<HistoryPotoganBloc> {
 
   @override
   Widget build(BuildContext context) {
+
+    DateTime pickedAwalDate;
+    DateTime pickedAkhirDate;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Riwayat Potongan'),
@@ -29,24 +33,68 @@ class HistoryPotonganPage extends Page<HistoryPotoganBloc> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Tanggal Awal'),
-                const SizedBox(height: 6,),
-                XTextField(
-                  onChanged: (val) {},
-                  hintText: 'Contoh: 2020-12-31',
+                Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('Tanggal Awal'),
+                        const SizedBox(height: 6,),                
+                        StatefulBuilder(
+                          builder: (context, setState) => FlatButton(
+                            color: primaryColor,
+                            onPressed:() async {
+                              pickedAwalDate = await showDatePicker(
+                                context: context, 
+                                initialDate: DateTime.now(), 
+                                firstDate: DateTime(2000), 
+                                lastDate: DateTime(2025),
+                              );
+                              if (pickedAwalDate != null && pickedAwalDate != _bloc.inputAwalDate) {
+                                setState(() => _bloc.inputAwalDate = pickedAwalDate);
+                              }
+                            },
+                            child: Text(pickedAwalDate != null ? 
+                              _bloc.inputAwalDate.toLocal().toString().split(' ')[0] 
+                              : 'Select Date', style: const TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 12,),                
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('Tanggal Akhir'),
+                        const SizedBox(height: 6,),
+                        StatefulBuilder(
+                          builder: (context, setState) => FlatButton(
+                            color: primaryColor,
+                            onPressed:() async {
+                              pickedAwalDate = await showDatePicker(
+                                context: context, 
+                                initialDate: DateTime.now(), 
+                                firstDate: DateTime(2000), 
+                                lastDate: DateTime(2025),
+                              );
+                              if (pickedAkhirDate != null && pickedAkhirDate != _bloc.inputAkhirDate) {
+                                setState(() => _bloc.inputAkhirDate = pickedAkhirDate);
+                              }
+                            },
+                            child: Text(pickedAkhirDate != null ? 
+                              _bloc.inputAkhirDate.toLocal().toString().split(' ')[0] 
+                              : 'Select Date', style: const TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
-                const SizedBox(height: 12,),
-                const Text('Tanggal Akhir'),
-                const SizedBox(height: 6,),
-                XTextField(
-                  onChanged: (val) {},
-                  hintText: 'Contoh: 2021-12-31',
-                ),
-                const SizedBox(height: 12,),
-                FlatButton(
+                FlatButton.icon(
                   color: primaryColor,
+                  icon: const Icon(Icons.search, color: Colors.white),
                   onPressed: () => cariNotifier.value = cariNotifier.value != null ? !cariNotifier.value : cariNotifier.value != null,
-                  child: const Text('CARI', style: TextStyle(color: Colors.white),)
+                  label: const Text('CARI', style: TextStyle(color: Colors.white),)
                 )
               ],
             )
@@ -64,7 +112,7 @@ class HistoryPotonganPage extends Page<HistoryPotoganBloc> {
                 final List<Map> content = snapshot.data;
                 return XBox(
                 child: SizedBox(
-                  height: 150,
+                  height: 270,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,

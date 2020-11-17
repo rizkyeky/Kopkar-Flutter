@@ -11,10 +11,16 @@ class HistoryPotoganBloc implements Bloc {
     // TODO: implement init
   }
 
+  DateTime inputAwalDate;
+  DateTime inputAkhirDate;
+
   final HistoryService _historyService = locator.get<HistoryService>();
 
   Future<List<Map>> getList() async {
     return _historyService.getRiwayat(HistoryType.potongan, 
-      nik:' 01739', dateAwal: '2020-01-01', dateAkhir: '2020-07-30');
+      nik:'01739', 
+      dateAwal: inputAwalDate != null ? inputAwalDate.toLocal().toString().split(' ')[0] : '' , 
+      dateAkhir: inputAkhirDate != null ? inputAkhirDate.toLocal().toString().split(' ')[0] : ''
+    );
   }
 }
