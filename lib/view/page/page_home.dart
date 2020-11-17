@@ -1,12 +1,6 @@
 part of 'page.dart';
 
-class HomePage extends Page<HomeBloc> {
-
-  @override
-  void dispose() {}
-
-  @override
-  void init() {}
+class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
