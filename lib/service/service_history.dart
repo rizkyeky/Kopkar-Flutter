@@ -93,19 +93,19 @@ class HistoryService {
     
     final String _typeBase = _typeBases[type][baseName];
     final Uri _uri = Uri.http(_homeBase, _subBase+_typeBase);
-    print(_uri.origin+_uri.path);
-    print(bodyPost);
+    // print(_uri.origin+_uri.path);
+    // print(bodyPost);
     
     try {
-      final http.Response response = await _client.post(_uri, body: bodyPost);
-        // .timeout(const Duration(seconds: 10));
-
+      final http.Response response = await _client.post(_uri, body: bodyPost)
+        .timeout(const Duration(seconds: 10));
+      
       final Map data = json.decode(response.body) as Map;
       final bool isSuccess = data['status'] == '200';
-      print(data);
+      // print(data);
 
       if (response.statusCode != 200 || !isSuccess) {
-        print('status code != 200');
+        // print('status code != 200');
         return [];
       } else {
         final List<Map> result = (data['result'] as List)
