@@ -98,7 +98,7 @@ class HistoryService {
     
     try {
       final http.Response response = await _client.post(_uri, body: bodyPost)
-        .timeout(const Duration(seconds: 10));
+        .timeout(const Duration(seconds: 20));
       
       final Map data = json.decode(response.body) as Map;
       final bool isSuccess = data['status'] == '200';
