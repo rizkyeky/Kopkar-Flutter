@@ -23,6 +23,7 @@ Future<void> setLocator() async {
   locator.registerFactory(() => HistoryPembelianBloc());
   locator.registerFactory(() => HistoryPPBOBloc());
   locator.registerFactory(() => HistoryPotoganBloc());
+  locator.registerFactory(() => SimulationBloc());
   
   await locator.allReady();
   // await locator.get<GraphService>().init();
