@@ -9,11 +9,9 @@ class PinjamanBloc implements Bloc {
   void init() {
   }
 
-  String nikAnggota;
-  String gajiPokok;
   Map<String, String> inputJenisPinjaman;
-  String nominalPinjaman;
-  String tenor;
+  String inputTotalPinjaman;
+  String inputLamaPinjaman;
   String keperluan;
 
   File inputFotoKTP;

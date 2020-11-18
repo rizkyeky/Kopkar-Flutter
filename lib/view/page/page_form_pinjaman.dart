@@ -51,12 +51,13 @@ class FormPinjamanPage extends Page<PinjamanBloc> {
                   keyboardType: TextInputType.number,
                   title: 'Nominal Pinjaman',
                   hitText: 'Contoh: 30000000',
-                  onSubmitted: (val) => _bloc.nominalPinjaman = val,
+                  onChanged: (val) => _bloc.inputTotalPinjaman = val,
                 ),
                 TexFieldSimpanan(
+                  keyboardType: TextInputType.number,
                   title: 'Lama Angsuran (Bulan)',
                   hitText: 'Contoh: 12',
-                  onSubmitted: (val) => _bloc.keperluan = val,
+                  onChanged: (val) => _bloc.inputLamaPinjaman = val,
                 ),
                 const SizedBox(height: 18),
                 StatefulBuilder(
@@ -128,7 +129,18 @@ class FormPinjamanPage extends Page<PinjamanBloc> {
                 TexFieldSimpanan(
                   title: 'Keperluan',
                   hitText: 'Contoh: Untuk Beli Motor',
-                  onSubmitted: (val) => _bloc.keperluan = val,
+                  onChanged: (val) => _bloc.keperluan = val,
+                ),
+                const SizedBox(height: 24),
+                FlatButton(
+                  color: primaryColor,
+                  onPressed: () => Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => SimulationPage(
+                      total: int.parse(_bloc.inputTotalPinjaman),
+                      lama: int.parse(_bloc.inputLamaPinjaman),
+                    ))
+                  ),
+                  child: const Text('Simulasi', style: TextStyle(color: Colors.white)),
                 ),
                 const SizedBox(height: 78),
               ],

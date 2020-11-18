@@ -94,4 +94,29 @@ class PinjamanService {
       return result;
     }
   }
+
+  Future<Map> getSimulation(int total, int lama) async {
+    const String _homeBase = '185.210.144.158';
+    const String _subBase = 'koperasi_api/api_v1/simulasiPinjaman';
+    final Uri _uri = Uri.http(_homeBase, _subBase);
+    
+    final http.Response response = await _client.post(_uri, body: {
+      'total_pinjaman': total.toString(), 
+      'lama_angsuran': lama.toString(),
+    })
+      .timeout(const Duration(seconds: 20));
+
+    // print(response.body);
+
+    final Map data = json.decode(response.body) as Map;
+    final bool getStatus = data['status'] == '200';
+
+    if (response.statusCode != 200 || !getStatus) {
+      return {};
+    } else {
+      data.remove('status');
+      data.remove('desc');
+      return data;
+    }
+  }
 }
