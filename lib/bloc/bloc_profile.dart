@@ -11,4 +11,7 @@ class ProfileBloc implements Bloc {
     // TODO: implement init
   }
 
+  final Anggota anggota = locator.get<Anggota>(instanceName: 'Anggota Active');
+  
+
 }

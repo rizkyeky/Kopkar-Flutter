@@ -15,10 +15,11 @@ class HistoryPotoganBloc implements Bloc {
   DateTime inputAkhirDate;
 
   final HistoryService _historyService = locator.get<HistoryService>();
+  final Anggota anggota = locator.get<Anggota>(instanceName: 'Anggota Active');
 
   Future<List<Map>> getList() async {
     return _historyService.getRiwayat(HistoryType.potongan, 
-      nik:'01739', 
+      nik: anggota.nikKar, 
       dateAwal: inputAwalDate != null ? inputAwalDate.toLocal().toString().split(' ')[0] : '' , 
       dateAkhir: inputAkhirDate != null ? inputAkhirDate.toLocal().toString().split(' ')[0] : ''
     );
@@ -28,7 +29,7 @@ class HistoryPotoganBloc implements Bloc {
     return _historyService.getRiwayat(HistoryType.potongan,
       isDetail: true,
       doc: doc,
-      nik: '01739'
+      nik: anggota.nikKar
     );
   }
 }

@@ -30,14 +30,18 @@ class PinjamanBloc implements Bloc {
     return _pinjamanBerjalanService.getPinjamanAjuan(nik);
   }
 
-  Future<void> getJenisPinjaman() async {
-    if (jenisPinjaman.isEmpty) {
-      jenisPinjaman.addAll(await _pinjamanBerjalanService.getJenisPinjaman());
-    }
+  Future<List<Map>> getJenisPinjaman() async {
+    return _pinjamanBerjalanService.getJenisPinjaman();
   }
 
   Future<List<Map>> getTable(String docNo) {
     return _pinjamanBerjalanService.getDetailPinjamanBerjalan(docNo);
+  }
+
+  Future<void> setPinjaman() async {
+    return _pinjamanBerjalanService.uploadFoto(
+      inputFotoKTP, 
+      inputJenisPinjaman['jenis_pinjaman_code'], inputTotalPinjaman, inputLamaPinjaman);
   }
 
 }

@@ -5,6 +5,8 @@ library bloc;
 
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
+
 import '../locator.dart';
 import '../model/model.dart';
 import '../service/service.dart';

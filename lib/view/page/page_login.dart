@@ -23,27 +23,52 @@ class LoginPage extends Page<LoginBloc> {
                 ),
               ), 
               const SizedBox(height: 24,),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(24, 24, 24, 0),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
                 child: XTextField(
-                  // controller: _emailText,
-                  text: 'Email',
+                  text: 'NIK',
+                  onChanged: (val) => _bloc.inputNIK = val,
+                  keyboardType: TextInputType.number,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(24),
+               Padding(
+                padding: const EdgeInsets.all(24),
                 child: XTextField(
                   obscureText: true,
-                  // controller: _passwordText,
                   text: 'Password',
+                  onChanged: (val) => _bloc.inputPassword = val,
+                  keyboardType: TextInputType.number,
                 ),
               ),
               const SizedBox(height: 24,),
               FloatingActionButton.extended(
                 elevation: 0,
                 highlightElevation: 0,
-                onPressed: () => Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => MainPage())), 
+                onPressed: () async {
+                  
+                  final bool isValid = (_bloc.inputNIK != null && _bloc.inputNIK != '') 
+                    && (_bloc.inputPassword != null && _bloc.inputPassword != '');
+                  
+                  if (isValid) {
+                    final bool isSuccess = await _bloc.getLogin();
+                    if (isSuccess) {
+                      Navigator.pushReplacement(
+                        context, MaterialPageRoute(builder: (context) => MainPage()));
+                    } else {
+                      Scaffold.of(contextScaffold).showSnackBar(snackBar(
+                        contentText: 'Login gagal',
+                        labelText: 'TUTUP',
+                        onPressed: () => Scaffold.of(contextScaffold).hideCurrentSnackBar()
+                      ));
+                    }
+                  } else {
+                    Scaffold.of(contextScaffold).showSnackBar(snackBar(
+                      contentText: 'NIK dan Password belum terisi',
+                      labelText: 'TUTUP',
+                      onPressed: () => Scaffold.of(contextScaffold).hideCurrentSnackBar()
+                    ));
+                  }
+                }, 
                 label: Row(
                   children: const [
                     Text('Login', style: TextStyle(fontSize: 20)),
@@ -51,7 +76,15 @@ class LoginPage extends Page<LoginBloc> {
                     Icon(Icons.arrow_forward)
                   ],
                 ),
-              )
+              ),
+              const SizedBox(height: 42,),
+              ValueListenableBuilder<bool>(
+                valueListenable: _bloc.awaitLogin,
+                builder: (context, value, child) {
+                  return Center(child: value ? child : null);
+                },
+                child: const CircularProgressIndicator()
+              ),
             ],
           ),
         ),

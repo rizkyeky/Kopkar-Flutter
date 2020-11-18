@@ -26,12 +26,12 @@ class ProfilePage extends Page<ProfileBloc> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   
-                  CircleAvatar(
+                  const CircleAvatar(
                     backgroundColor: Colors.grey,
                     radius: 42,
                   ),
                   const SizedBox(height: 12,),
-                  Text('Nama', style: TextStyle(
+                  Text(_bloc.anggota.namaKar, style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 20
@@ -42,7 +42,7 @@ class ProfilePage extends Page<ProfileBloc> {
           ),
           ListTile(
             leading: const Icon(Icons.account_circle_outlined),
-            title: const Text('Nama'),
+            title: Text(_bloc.anggota.namaKar),
             trailing: const Icon(Icons.edit),
             onLongPress: () {},
             subtitle: const Text('Ganti nama untuk akun ini'),

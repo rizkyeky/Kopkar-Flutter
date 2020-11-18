@@ -13,6 +13,7 @@ Future<void> setLocator() async {
   locator.registerLazySingleton(() => ConnectionService.getInstance());
   locator.registerLazySingleton(() => PinjamanService());
   locator.registerLazySingleton(() => HistoryService());
+  locator.registerLazySingleton(() => AnggotaService());
   
   locator.registerFactory(() => ProfileBloc());
   locator.registerFactory(() => LoginBloc());

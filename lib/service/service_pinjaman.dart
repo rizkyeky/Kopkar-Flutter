@@ -119,4 +119,41 @@ class PinjamanService {
       return data;
     }
   }
+
+  Future<void> uploadFoto(
+    File file, 
+    String jenisPinjaman, 
+    String totalPinjaman, 
+    String lamaPinjaman
+  ) async {
+
+    const String _homeBase = '185.210.144.158';
+    const String _subBase = 'koperasi_api/api_v1/simulasiPinjaman';
+    final Uri _uri = Uri.http(_homeBase, _subBase);
+
+    final request = http.MultipartRequest('POST', _uri);
+    request.files.add(
+      http.MultipartFile(
+        'foto_ktp',
+        file.readAsBytes().asStream(),
+        file.lengthSync(),
+        filename: 'ktp',
+        contentType: MediaType('image','jpg'),
+      ),
+    );
+
+    request.fields.addAll({
+      'jenis_pinjaman': jenisPinjaman,
+      'total_pinjaman': totalPinjaman,
+      'lama_pinjaman': lamaPinjaman,
+      // 'foto_ktp': , 
+      // 'foto_slip_gaji': , 
+      // 'foto_npwp': ,
+      'doc_remarks': '', 
+      'nik_kar': '07380',
+    }); 
+    
+    final http.StreamedResponse response = await request.send();
+    print(response.reasonPhrase);
+  }
 }

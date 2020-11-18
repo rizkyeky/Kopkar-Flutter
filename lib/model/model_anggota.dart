@@ -6,9 +6,9 @@ class Anggota {
   String namaKar;
   String email;
   String noTelp;
-  int simWajib;
-  int simPokok;
-  int gaji;
+  String simWajib;
+  String simPokok;
+  String gaji;
   bool batasPinjaman;
 
   Anggota(this.id, this.nikKar, {
@@ -26,9 +26,9 @@ class Anggota {
     namaKar: '',
     email: '',
     noTelp: '',
-    gaji: 0,
-    simPokok: 0,
-    simWajib: 0,
+    gaji: '0',
+    simPokok: '0',
+    simWajib: '0',
     batasPinjaman: false,
   );
 
@@ -38,29 +38,31 @@ class Anggota {
     namaKar: data['nama_kar'] as String,
     email: data['email'] as String,
     noTelp: data['no_telp'] as String,
-    simPokok: (data['sim_pokok'] as num).toInt(),
-    simWajib: (data['sim_wajib'] as num).toInt(),
-    gaji: (data['gaji'] as num).toInt(),
+    simPokok: data['sim_pokok'] as String,
+    simWajib: data['sim_wajib'] as String,
+    gaji: data['gaji'] as String,
     batasPinjaman: data['batas_pinjaman'] as bool
   );
 
-  void duplicate(Anggota anggota) {
-    namaKar = anggota.namaKar;
-    email = anggota.email;
-    noTelp = anggota.noTelp;
-    simWajib = anggota.simWajib;
-    simPokok = anggota.simPokok;
-    gaji = anggota.gaji;
-    batasPinjaman = anggota.batasPinjaman;
-  }
+  factory Anggota.duplicate(Anggota anggota) => Anggota(
+    anggota.id,
+    anggota.nikKar,
+    namaKar: anggota.namaKar,
+    email: anggota.email,
+    noTelp: anggota.noTelp,
+    simWajib: anggota.simWajib,
+    simPokok: anggota.simPokok,
+    gaji: anggota.gaji,
+    batasPinjaman: anggota.batasPinjaman,
+  );
 
   void copyWith({
     String namaKar,
     String email,
     String noTelp,
-    int simWajib,
-    int simPokok,
-    int gaji,
+    String simWajib,
+    String simPokok,
+    String gaji,
     bool batasPinjaman,
   }) {
     this.namaKar = namaKar ?? this.namaKar;
