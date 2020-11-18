@@ -15,14 +15,14 @@ import 'package:kopkar/locator.dart';
 Future<void> main() async {
 
   final HistoryService _service = HistoryService();
+  final PinjamanService _pinjamanService = PinjamanService();
   // await _service.getPinjamanBerjalan('07380');
   // List<PinjamanBerjalan> pinjamanBerjalan = await _service.getPinjamanBerjalan('07380');
-  List<Map> data = await _service.getRiwayat(HistoryType.potongan, 
-      nik:'01739', dateAwal: '2020-01-01', dateAkhir: '2020-07-30');
+  Map data = await _pinjamanService.getSimulation(3000000, 12);
   
   print(data.length);
-  data.forEach((element) {
-    print(element);
+  data.forEach((key, val) {
+    print(key);
   });
   // await _service.getSome();
 }
