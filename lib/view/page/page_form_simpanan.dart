@@ -27,12 +27,12 @@ class FormSimpananPage extends Page<SimpananBloc> {
             TexFieldSimpanan(
               title: 'NIK',
               hitText: 'Contoh: 7000',
-              onSubmitted: (val) => _bloc.nikAnggota = val
+              onChanged: (val) => _bloc.nikAnggota = val
             ),
             TexFieldSimpanan(
               title: 'Gaji Pokok',
               hitText: 'Contoh: 10000000',
-              onSubmitted: (val) => _bloc.gajiPokok = val,
+              onChanged: (val) => _bloc.gajiPokok = val,
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(0,18,0,6),
@@ -61,12 +61,12 @@ class FormSimpananPage extends Page<SimpananBloc> {
             TexFieldSimpanan(
               title: 'Nominal Pinjaman',
               hitText: 'Contoh: 30000000',
-              onSubmitted: (val) => _bloc.nominalPinjaman = val,
+              onChanged: (val) => _bloc.nominalPinjaman = val,
             ),
             TexFieldSimpanan(
               title: 'Keperluan',
               hitText: 'Contoh: Untuk Beli Motor',
-              onSubmitted: (val) => _bloc.keperluan = val,
+              onChanged: (val) => _bloc.keperluan = val,
             ),
             const SizedBox(height: 78),
           ],
@@ -86,7 +86,7 @@ class TexFieldSimpanan extends StatelessWidget {
   
   final String title;
   final String hitText;
-  final void Function(String) onSubmitted;
+  final void Function(String) onChanged;
   final TextInputType keyboardType;
   final bool readOnly;
 
@@ -94,7 +94,7 @@ class TexFieldSimpanan extends StatelessWidget {
     Key key,
     this.title,
     this.hitText,
-    this.onSubmitted,
+    this.onChanged,
     this.keyboardType,
     this.readOnly
   }) : super(key: key);
@@ -113,7 +113,7 @@ class TexFieldSimpanan extends StatelessWidget {
         ),
         XTextField(
           text: hitText,
-          onSubmitted: onSubmitted,
+          onChanged: onChanged,
           keyboardType: keyboardType,
         )
       ],
