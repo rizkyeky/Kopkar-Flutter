@@ -31,6 +31,7 @@ part 'page_history_potongan.dart';
 part 'page_detail.dart';
 part 'page_form_simpanan.dart';
 part 'page_form_pinjaman.dart';
+part 'page_simulation.dart';
 
 abstract class Page<T extends Bloc> extends StatefulWidget {
 

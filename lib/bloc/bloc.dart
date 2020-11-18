@@ -13,6 +13,7 @@ part 'bloc_login.dart';
 part 'bloc_profile.dart';
 part 'bloc_pinjaman.dart';
 part 'bloc_simpanan.dart';
+part 'bloc_simulation.dart';
 
 part 'bloc_history_ppbo.dart';
 part 'bloc_history_simpanan.dart';
