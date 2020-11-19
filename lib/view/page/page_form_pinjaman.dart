@@ -194,11 +194,25 @@ class FormPinjamanPage extends Page<PinjamanBloc> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        elevation: 0,
-        highlightElevation: 0,
-        onPressed: () async => _bloc.setPinjaman(), 
-        label: const Text('Simpan')
+      floatingActionButton: ValueListenableBuilder<bool>(
+        valueListenable: _bloc.awaitNotifier,
+        builder: (context, value, child) {
+          return FloatingActionButton.extended(
+            elevation: 0,
+            highlightElevation: 0,
+            onPressed: () async {
+              final bool isSuccess = await _bloc.setPinjaman();
+              if (isSuccess) {
+                Navigator.pop(context);
+              }
+            }, 
+            label: value ? const Center(
+              child:  CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
+            ) : const Text('Simpan')
+          );
+        },
       ),
     );
   }

@@ -120,8 +120,10 @@ class PinjamanService {
     }
   }
 
-  Future<void> uploadFoto(
-    File file, 
+  Future<bool> simpanPinjaman(
+    File fotoKTP, 
+    File fotoSlipGaji, 
+    File fotoNPWP, 
     String jenisPinjaman, 
     String totalPinjaman, 
     String lamaPinjaman
@@ -135,25 +137,44 @@ class PinjamanService {
     request.files.add(
       http.MultipartFile(
         'foto_ktp',
-        file.readAsBytes().asStream(),
-        file.lengthSync(),
+        fotoKTP.readAsBytes().asStream(),
+        fotoKTP.lengthSync(),
         filename: 'ktp',
         contentType: MediaType('image','jpg'),
       ),
     );
 
+    request.files.add(
+      http.MultipartFile(
+        'foto_slip_gaji',
+        fotoSlipGaji.readAsBytes().asStream(),
+        fotoSlipGaji.lengthSync(),
+        filename: 'foto_slip_gaji',
+        contentType: MediaType('image','jpg'),
+      ),
+    );
+
+    request.files.add(
+      http.MultipartFile(
+        'foto_npwp',
+        fotoNPWP.readAsBytes().asStream(),
+        fotoNPWP.lengthSync(),
+        filename: 'foto_npwp',
+        contentType: MediaType('image','jpg'),
+      ),
+    );
+
+    final Anggota anggota = locator.get<Anggota>(instanceName: 'Anggota Active');
+
     request.fields.addAll({
       'jenis_pinjaman': jenisPinjaman,
       'total_pinjaman': totalPinjaman,
       'lama_pinjaman': lamaPinjaman,
-      // 'foto_ktp': , 
-      // 'foto_slip_gaji': , 
-      // 'foto_npwp': ,
       'doc_remarks': '', 
-      'nik_kar': '07380',
+      'nik_kar': anggota.nikKar,
     }); 
     
     final http.StreamedResponse response = await request.send();
-    print(response.reasonPhrase);
+    return response.statusCode == 200;
   }
 }

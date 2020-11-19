@@ -21,6 +21,7 @@ class PinjamanBloc implements Bloc {
   List<Map> jenisPinjaman = [];
 
   final PinjamanService _pinjamanBerjalanService = locator.get<PinjamanService>();
+  final ValueNotifier<bool> awaitNotifier = ValueNotifier(false);
 
   Future<List<PinjamanBerjalan>> getPinjamanBerjalanFromService(String nik) async {
     return _pinjamanBerjalanService.getPinjamanBerjalan(nik);
@@ -38,10 +39,20 @@ class PinjamanBloc implements Bloc {
     return _pinjamanBerjalanService.getDetailPinjamanBerjalan(docNo);
   }
 
-  Future<void> setPinjaman() async {
-    return _pinjamanBerjalanService.uploadFoto(
-      inputFotoKTP, 
-      inputJenisPinjaman['jenis_pinjaman_code'], inputTotalPinjaman, inputLamaPinjaman);
+  Future<bool> setPinjaman() async {
+    awaitNotifier.value = true;
+    bool isSuccess = false;
+    await _pinjamanBerjalanService.simpanPinjaman(
+      inputFotoKTP,
+      inputFotoSlipGaji,
+      inputFotoNPWP, 
+      inputJenisPinjaman['jenis_pinjaman_code'], inputTotalPinjaman, inputLamaPinjaman)
+    .then((value) {
+      isSuccess = value;
+      awaitNotifier.value = false;
+    })
+    .timeout(const Duration(seconds: 10));
+    return isSuccess;
   }
 
 }
