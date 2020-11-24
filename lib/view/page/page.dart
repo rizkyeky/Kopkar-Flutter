@@ -13,6 +13,7 @@ import '../../locator.dart';
 import '../../model/model.dart';
 import '../../theme.dart';
 import '../component/component.dart';
+import '../../service/service.dart';
 
 part 'page_main.dart';
 part 'page_home.dart';
@@ -57,6 +58,8 @@ abstract class Page<T extends Bloc> extends StatefulWidget {
 
 class _PageState<T extends Bloc> extends State<Page<T>> {
   
+  bool hasOffline = false;
+
   @override
   void initState() {
     if (widget.init != null) {
@@ -77,7 +80,29 @@ class _PageState<T extends Bloc> extends State<Page<T>> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.build(context);
+    return ValueListenableBuilder<ConnectionStatus>(
+      valueListenable: locator.get<ConnectionService>().networkStatusNotifier,
+      builder: (context, value, child) {
+        if (value == ConnectionStatus.offline) {
+          Future.delayed(const Duration(seconds: 1)).then((value) => 
+            showNetworkFlash(context,
+              text: 'OFFLINE',
+              color: Colors.red,
+            )
+          );
+          hasOffline = true;
+        } else if (hasOffline) {
+          Future.delayed(const Duration(seconds: 1)).then((value) => 
+             showNetworkFlash(context,
+              text: 'ONLINE',
+              duration: const Duration(seconds: 2),
+              color: Colors.green,
+            )
+          );
+        }
+        return child;
+      },
+      child: widget.build(context),
+    );
   }
-
 }

@@ -21,9 +21,9 @@ class LoginBloc implements Bloc {
     bool isSuccess;
     if (inputNIK != null && inputPassword != null) {
       awaitLogin.value = true;
-      await _anggotaService.login(inputNIK, inputPassword).then((value) {
-        if (value.result != null){
-          locator.registerSingleton(Anggota.duplicate(value.result as Anggota),
+      await _anggotaService.login(inputNIK, inputPassword).then((result) {
+        if (result.value != null) {
+          locator.registerSingleton(Anggota.duplicate(result.value as Anggota),
             instanceName: 'Anggota Active'
           );
           isSuccess = true;

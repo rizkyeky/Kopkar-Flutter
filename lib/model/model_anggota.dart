@@ -55,6 +55,19 @@ class Anggota {
     gaji: anggota.gaji,
     batasPinjaman: anggota.batasPinjaman,
   );
+  
+  void duplicate(Anggota anggota) {
+    id = anggota.id;
+    nikKar = anggota.nikKar;
+    namaKar = anggota.namaKar;
+    email = anggota.email;
+    noTelp = anggota.noTelp;
+    simWajib = anggota.simWajib;
+    simPokok = anggota.simPokok;
+    gaji = anggota.gaji;
+    batasPinjaman = anggota.batasPinjaman;
+
+  }
 
   void copyWith({
     String namaKar,
@@ -73,4 +86,28 @@ class Anggota {
     this.gaji = gaji ?? this.gaji;
     this.batasPinjaman = batasPinjaman ?? this.batasPinjaman;
   }
+
+  factory Anggota.fromLocal(List<String> data) => Anggota(
+    data[0],
+    data[1],
+    namaKar: data[2],
+    email: data[3],
+    noTelp: data[4],
+    simWajib: data[5],
+    simPokok: data[6],
+    gaji: data[7],
+    batasPinjaman: data[8] == 'true',
+  );
+
+  List<String> get toLocal => [
+    id, 
+    nikKar, 
+    namaKar,
+    email, 
+    gaji,
+    noTelp,
+    simPokok,
+    simWajib,
+    batasPinjaman.toString(),
+  ];
 }

@@ -26,7 +26,7 @@ class AnggotaService {
         return ServiceResult(massage: 'not success');
       } else {
         final Map result = Map.from(data['data'][0] as Map);
-        return ServiceResult(result: Anggota.fromJSON(Map<String, dynamic>.from(result)));
+        return ServiceResult(value: Anggota.fromJSON(Map<String, dynamic>.from(result)));
       }
     } catch (e) {
       return ServiceResult(massage: 'not success');
