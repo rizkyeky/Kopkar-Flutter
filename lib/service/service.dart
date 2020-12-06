@@ -19,6 +19,7 @@ part 'service_pinjaman.dart';
 part 'service_connection.dart';
 part 'service_history.dart';
 part 'service_local.dart';
+part 'api.dart';
 
 enum ConnectionStatus { online, offline }
 
