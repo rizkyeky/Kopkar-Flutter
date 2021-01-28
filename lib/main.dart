@@ -25,7 +25,7 @@ Future<void> main() async {
 
   await locator.allReady();
 
-  runApp(App(isLogin: serviceResult == null,));
+  runApp(const App(isLogin: false,));
 }
 
 class App extends StatelessWidget {

@@ -50,7 +50,7 @@ class LoginPage extends Page<LoginBloc> {
                     && (_bloc.inputPassword != null && _bloc.inputPassword != '');
                   
                   if (isValid) {
-                    final bool isSuccess = true; // await _bloc.getLogin();
+                    const bool isSuccess = true; // await _bloc.getLogin();
                     if (isSuccess) {
                       Navigator.pushReplacement(
                         context, MaterialPageRoute(builder: (context) => MainPage()));

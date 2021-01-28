@@ -80,29 +80,30 @@ class _PageState<T extends Bloc> extends State<Page<T>> {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<ConnectionStatus>(
-      valueListenable: locator.get<ConnectionService>().networkStatusNotifier,
-      builder: (context, value, child) {
-        if (value == ConnectionStatus.offline) {
-          Future.delayed(const Duration(seconds: 1)).then((value) => 
-            showNetworkFlash(context,
-              text: 'OFFLINE',
-              color: Colors.red,
-            )
-          );
-          hasOffline = true;
-        } else if (hasOffline) {
-          Future.delayed(const Duration(seconds: 1)).then((value) => 
-             showNetworkFlash(context,
-              text: 'ONLINE',
-              duration: const Duration(seconds: 2),
-              color: Colors.green,
-            )
-          );
-        }
-        return child;
-      },
-      child: widget.build(context),
-    );
+    // return ValueListenableBuilder<ConnectionStatus>(
+    //   valueListenable: locator.get<ConnectionService>().networkStatusNotifier,
+    //   builder: (context, value, child) {
+    //     if (value == ConnectionStatus.offline) {
+    //       Future.delayed(const Duration(seconds: 1)).then((value) => 
+    //         showNetworkFlash(context,
+    //           text: 'OFFLINE',
+    //           color: Colors.red,
+    //         )
+    //       );
+    //       hasOffline = true;
+    //     } else if (hasOffline) {
+    //       Future.delayed(const Duration(seconds: 1)).then((value) => 
+    //          showNetworkFlash(context,
+    //           text: 'ONLINE',
+    //           duration: const Duration(seconds: 2),
+    //           color: Colors.green,
+    //         )
+    //       );
+    //     }
+    //     return child;
+    //   },
+    //   child: widget.build(context),
+    // );
+    return widget.build(context);
   }
 }

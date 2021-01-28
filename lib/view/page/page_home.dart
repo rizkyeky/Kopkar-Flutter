@@ -16,10 +16,12 @@ class HomePage extends StatelessWidget {
             options: CarouselOptions(
               height: 300,
               viewportFraction: 1,
+              aspectRatio: 1,
             ),
             itemCount: 4,
-            itemBuilder: (context, index) => SizedBox(
-              child: Image.asset('assets/img/Image${index+1}.png'),
+            itemBuilder: (context, index) => Image.asset('assets/img/image${index+1}.jpg',
+              height: 300,
+              fit: BoxFit.cover,
             ), 
           ),
           Container(
@@ -91,8 +93,10 @@ class _ContentList extends StatelessWidget {
               itemCount: 5,
               itemBuilder: (context, index) => Container(
                 margin: const EdgeInsets.fromLTRB(12, 12, 0, 12),
-                color: primaryColor,
                 width: 100,
+                child: Image.asset('assets/img/tumb${index+1}.jpg',
+                  fit: BoxFit.cover,
+                )
               )
             ),
           ),

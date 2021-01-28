@@ -27,6 +27,6 @@ Future<void> setLocator() async {
   locator.registerFactory(() => HistoryPotoganBloc());
   locator.registerFactory(() => SimulationBloc());
   
-  await locator.get<ConnectionService>().init();
-  await locator.get<LocalService>().init();
+  // await locator.get<ConnectionService>().init();
+  // await locator.get<LocalService>().init();
 }
